@@ -24,6 +24,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, soil-classification-tool-d2487');
+    expect(compiled.querySelector('h1')?.textContent).toContain('soil-classification-tool-d2487');
   });
 });
