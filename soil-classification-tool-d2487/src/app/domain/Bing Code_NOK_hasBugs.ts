@@ -8,17 +8,15 @@ const UPPER_COEFFICIENT_OF_CURVATURE_THRESHOLD = 3; // Upper bound of coefficien
 const LIQUID_LIMIT_THRESHOLD = 50; // Liquid limit for high plasticity soil
 const LOWER_PLASTICITY_INDEX_THRESHOLD = 4; // Lower bound of plasticity index for silty soil
 const UPPER_PLASTICITY_INDEX_THRESHOLD = 7; // Upper bound of plasticity index for clayey soil
-const ORGANIC_CONTENT_THRESHOLD = 4; // Percentage of organic content for organic soil
 
 function classifySoilWithD2487Standard(data: SoilData): string {
-  if (data.percentagePassingSieveNo200 > GRAIN_SIZE_THRESHOLD) {
-    return classifyFineGrainedSoil(data);
-  } else {
+  if (data.percentagePassingSieveNo200 < GRAIN_SIZE_THRESHOLD) {
     return classifyCoarseGrainedSoil(data);
+  } else {
+    return classifyFineGrainedSoil(data);
   }
 }
 
-// Function to classify coarse-grained soil
 function classifyCoarseGrainedSoil(data: SoilData): string {
   if (data.percentageOfGravel > data.percentageOfSand) {
     return classifyCoarseGrainedSoilWithGravelDominantMaterial(data);
@@ -30,13 +28,15 @@ function classifyCoarseGrainedSoil(data: SoilData): string {
 function classifyCoarseGrainedSoilWithGravelDominantMaterial(
   data: SoilData
 ): string {
+  let groupName = "";
+
   if (data.percentagePassingSieveNo200 > FINES_THRESHOLD) {
     if (data.plasticityIndex < LOWER_PLASTICITY_INDEX_THRESHOLD) {
-      return "GM-Silty gravel";
+      groupName = "GM-Silty gravel";
     } else if (data.plasticityIndex >= UPPER_PLASTICITY_INDEX_THRESHOLD) {
-      return "GC-Clayey gravel";
+      groupName = "GC-Clayey gravel";
     } else {
-      return "GM-GC-Silty-clayey gravel";
+      groupName = "GM-GC-Silty-clayey gravel";
     }
   } else {
     if (
@@ -44,23 +44,29 @@ function classifyCoarseGrainedSoilWithGravelDominantMaterial(
       data.coefficientOfCurvature >= LOWER_COEFFICIENT_OF_CURVATURE_THRESHOLD &&
       data.coefficientOfCurvature <= UPPER_COEFFICIENT_OF_CURVATURE_THRESHOLD
     ) {
-      return "GW-Well-graded gravel";
+      groupName = "GW-Well-graded gravel";
     } else {
-      return "GP-Poorly-graded gravel";
+      groupName = "GP-Poorly-graded gravel";
     }
   }
+
+  groupName = extendNameIfNeeded_Sand(data, groupName);
+
+  return groupName;
 }
 
 function classifyCoarseGrainedSoilWithSandDominantMaterial(
   data: SoilData
 ): string {
+  let groupName = "";
+
   if (data.percentagePassingSieveNo200 > FINES_THRESHOLD) {
     if (data.plasticityIndex < LOWER_PLASTICITY_INDEX_THRESHOLD) {
-      return "SM-Silty sand";
+      groupName = "SM-Silty sand";
     } else if (data.plasticityIndex >= UPPER_PLASTICITY_INDEX_THRESHOLD) {
-      return "SC-Clayey sand";
+      groupName = "SC-Clayey sand";
     } else {
-      return "SM-SC-Silty-clayey sand";
+      groupName = "SM-SC-Silty-clayey sand";
     }
   } else {
     if (
@@ -68,11 +74,15 @@ function classifyCoarseGrainedSoilWithSandDominantMaterial(
       data.coefficientOfCurvature >= LOWER_COEFFICIENT_OF_CURVATURE_THRESHOLD &&
       data.coefficientOfCurvature <= UPPER_COEFFICIENT_OF_CURVATURE_THRESHOLD
     ) {
-      return "SW-Well-graded sand";
+      groupName = "SW-Well-graded sand";
     } else {
-      return "SP-Poorly-graded sand";
+      groupName = "SP-Poorly-graded sand";
     }
   }
+
+  groupName = extendNameIfNeeded_Gravel(data, groupName);
+
+  return groupName;
 }
 
 function classifyFineGrainedSoil(data: SoilData): string {
@@ -83,28 +93,56 @@ function classifyFineGrainedSoil(data: SoilData): string {
   }
 }
 
-// Function to classify fine-grained soil with liquid limit below 50
 function classifyFineGrainedSoilWithLiquidLimitBelow(data: SoilData): string {
+  let groupName = "";
+
   if (data.percentagePassingSieveNo200 < COARSE_FRACTION_THRESHOLD) {
     if (data.plasticityIndex < UPPER_PLASTICITY_INDEX_THRESHOLD) {
-      return "CL-Lean clay";
+      groupName = "CL-Lean clay";
     } else {
-      return "CL-ML-Lean clay-silt mixture";
+      groupName = "CL-ML-Lean clay-silt mixture";
     }
   } else {
-    return "ML-Silt";
+    groupName = "ML-Silt";
   }
+
+  // TODO: check the dominant values
+  groupName = extendNameIfNeeded_Sand(data, groupName);
+  groupName = extendNameIfNeeded_Gravel(data, groupName);
+
+  return groupName;
 }
 
-// Function to classify fine-grained soil with liquid limit above 50
 function classifyFineGrainedSoilWithLiquidLimitAbove(data: SoilData): string {
+  let groupName = "";
+
   if (data.percentagePassingSieveNo200 < COARSE_FRACTION_THRESHOLD) {
     if (data.plasticityIndex < UPPER_PLASTICITY_INDEX_THRESHOLD) {
-      return "CH-Fat clay";
+      groupName = "CH-Fat clay";
     } else {
-      return "CH-MH-Fat clay-elastic silt mixture";
+      groupName = "CH-MH-Fat clay-elastic silt mixture";
     }
   } else {
-    return "MH-Elastic silt";
+    groupName = "MH-Elastic silt";
   }
+
+  groupName = extendNameIfNeeded_Sand(data, groupName);
+  groupName = extendNameIfNeeded_Gravel(data, groupName);
+
+  return groupName;
+}
+
+function extendNameIfNeeded_Sand(data: SoilData, groupName: string): string {
+  if (data.percentageOfSand > COARSE_FRACTION_THRESHOLD) {
+    groupName += " with sand";
+  }
+  return groupName;
+}
+
+// Function to extend the group name if the soil contains more than 15% gravel
+function extendNameIfNeeded_Gravel(data: SoilData, groupName: string): string {
+  if (data.percentageOfGravel > COARSE_FRACTION_THRESHOLD) {
+    groupName += " with gravel";
+  }
+  return groupName;
 }
