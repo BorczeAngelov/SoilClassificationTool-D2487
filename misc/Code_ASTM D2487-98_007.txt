@@ -20,24 +20,39 @@ enum SoilClassification {
 }
 
 type SoilData = {
-  percentagePassing75mm: number; // Percentage of soil particles passing a 75mm sieve
-  percentagePassing475mm: number; // Percentage of soil particles passing a 4.75mm sieve
-  percentagePassing0075mm: number; // Percentage of soil particles passing a 0.075mm sieve
-  coefficientOfCurvature: number; // Measure of the gradation curve's shape in the finer portion
-  coefficientOfUniformity: number; // Measure of the soil's particle size uniformity
-  liquidLimit: number; // Water content at which soil changes from plastic to liquid state
-  plasticityIndex: number; // Range of water contents where soil exhibits plastic properties
-  organicContent: boolean; // Whether the soil contains organic material
+  percentageOfGravel: number; // Percentage of Gravel (G - Flowchart ASTM D2487-98)
+  percentageOfSand: number; // Percentage of Sand (S - Flowchart ASTM D2487-98)
+  percentageOfSilt: number; // Percentage of Silt (M - Flowchart ASTM D2487-98)
+  percentageOfClay: number; // Percentage of Clay (C - Flowchart ASTM D2487-98)
+  coefficientOfCurvature: number; // Coefficient of Curvature (Cc) - Optional
+  coefficientOfUniformity: number; // Coefficient of Uniformity (Cu) - Optional
+  d10: number; // d10 - Optional
+  d30: number; // d30 - Optional
+  d60: number; // d60 - Optional
+  percentagePassingSieveNo200: number; // Percentage Passing Sieve No.200
+  liquidLimit: number; // Liquid Limit (LL)
+  plasticityIndex: number; // Plasticity Index (PI)
+  atterbergLimitsSymbol: string; // Atterberg Limits Symbol
+  percentageOfOrganicContent: number; // Percentage of Organic Content
 };
 
-const GRAIN_SIZE_THRESHOLD = 50;
-const LIQUID_LIMIT_THRESHOLD = 50;
-const PLASTICITY_INDEX_THRESHOLD = 7;
-const LOWER_PLASTICITY_INDEX_THRESHOLD = 4;
-const COEFFICIENT_OF_UNIFORMITY_THRESHOLD = 4;
-const LOWER_COEFFICIENT_OF_CURVATURE_THRESHOLD = 1;
-const UPPER_COEFFICIENT_OF_CURVATURE_THRESHOLD = 3;
-const PERCENTAGE_PASSING_THRESHOLD = 5;
+
+
+// CriteriaClassificationThresholds
+const GRAIN_SIZE_THRESHOLD = 50; // A: Based on materials passing through the sieve of 3-in, 75 mm.
+const LIQUID_LIMIT_THRESHOLD = 50; // Water content at which soil changes from plastic to liquid state
+const PLASTICITY_INDEX_THRESHOLD = 7; // Range of water contents where soil exhibits plastic properties
+const LOWER_PLASTICITY_INDEX_THRESHOLD = 4; // J: If a pair of values (wL, IP) in the plasticity diagram is situated within the hatched area (4 < IP < 7), the soil is designated as CL-ML, as silty clay[^1^][1].
+const COEFFICIENT_OF_UNIFORMITY_THRESHOLD = 4; // C: cu = D60/D10; cc = (D30)2/(D10xD60)
+const LOWER_COEFFICIENT_OF_CURVATURE_THRESHOLD = 1; // C: Measure of the gradation curve's shape in the finer portion
+const UPPER_COEFFICIENT_OF_CURVATURE_THRESHOLD = 3; // C: Upper threshold for gradation curve's shape in soil classification
+const PERCENTAGE_PASSING_THRESHOLD = 5; // Percentage of soil particles passing a certain sieve size
+const SAND_CONTENT_THRESHOLD = 15; // D: If soil contains ≥ 15 % of sand, the name of the soil group must be extended with "with sand"[^2^][2][^3^][3].
+const GRAVEL_CONTENT_THRESHOLD = 15; // H: If soil contains ≥ 15 % of gravel the name of the soil group should be extended by adding "with gravel"[^4^][4].
+const FINE_GRAIN_THRESHOLD = 12; // E and I: Gravels with 5 to 12 % fine grains get double symbols[^5^][5]
+const COARSE_MATERIAL_THRESHOLD = 30; // K, L, and M: If the soil contains 15 to 30 % of material above the sieve No.. 200 – 0.075 mm, the name of the soil group should be extended by adding "with sand" or "with gravel", depending on which of these two materials is dominant[^3^][3][^6^][6].
+const ORGANIC_CONTENT_THRESHOLD = 0.75; // N, O, P, and Q: Ratio of liquid limit with and without drying in oven for organic soil[^7^][7][^8^][8]
+
 
 function USCS_D2487SoilClassification(data: SoilData): SoilClassification {
   if (data.percentagePassing0075mm > GRAIN_SIZE_THRESHOLD) {
@@ -80,7 +95,9 @@ function classifyFineGrainedSoil(data: SoilData): SoilClassification {
 }
 
 function classifyCoarseGrainedSoil(data: SoilData): SoilClassification {
-  if (data.coefficientOfUniformity > COEFFICIENT_OF_UNIFORMITY_THRESHOLD && data.coefficientOfCurvature > LOWER_COEFFICIENT_OF_CURVATURE_THRESHOLD && data.coefficientOfCurvature < UPPER_COEFFICIENT_OF_CURVATURE_THRESHOLD) {
+  if (data.coefficientOfUniformity > COEFFICIENT_OF_UNIFORMITY_THRESHOLD && 
+      data.coefficientOfCurvature > LOWER_COEFFICIENT_OF_CURVATURE_THRESHOLD && 
+      data.coefficientOfCurvature < UPPER_COEFFICIENT_OF_CURVATURE_THRESHOLD) {
     if (data.percentagePassing475mm > GRAIN_SIZE_THRESHOLD) {
       return SoilClassification.GW;
     } else {
