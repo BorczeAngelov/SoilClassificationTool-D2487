@@ -36,24 +36,6 @@ type SoilData = {
   percentageOfOrganicContent: number; // Percentage of Organic Content
 };
 
-
-
-// CriteriaClassificationThresholds
-const GRAIN_SIZE_THRESHOLD = 50; // A: Based on materials passing through the sieve of 3-in, 75 mm.
-const LIQUID_LIMIT_THRESHOLD = 50; // Water content at which soil changes from plastic to liquid state
-const PLASTICITY_INDEX_THRESHOLD = 7; // Range of water contents where soil exhibits plastic properties
-const LOWER_PLASTICITY_INDEX_THRESHOLD = 4; // J: If a pair of values (wL, IP) in the plasticity diagram is situated within the hatched area (4 < IP < 7), the soil is designated as CL-ML, as silty clay[^1^][1].
-const COEFFICIENT_OF_UNIFORMITY_THRESHOLD = 4; // C: cu = D60/D10; cc = (D30)2/(D10xD60)
-const LOWER_COEFFICIENT_OF_CURVATURE_THRESHOLD = 1; // C: Measure of the gradation curve's shape in the finer portion
-const UPPER_COEFFICIENT_OF_CURVATURE_THRESHOLD = 3; // C: Upper threshold for gradation curve's shape in soil classification
-const PERCENTAGE_PASSING_THRESHOLD = 5; // Percentage of soil particles passing a certain sieve size
-const SAND_CONTENT_THRESHOLD = 15; // D: If soil contains ≥ 15 % of sand, the name of the soil group must be extended with "with sand"[^2^][2][^3^][3].
-const GRAVEL_CONTENT_THRESHOLD = 15; // H: If soil contains ≥ 15 % of gravel the name of the soil group should be extended by adding "with gravel"[^4^][4].
-const FINE_GRAIN_THRESHOLD = 12; // E and I: Gravels with 5 to 12 % fine grains get double symbols[^5^][5]
-const COARSE_MATERIAL_THRESHOLD = 30; // K, L, and M: If the soil contains 15 to 30 % of material above the sieve No.. 200 – 0.075 mm, the name of the soil group should be extended by adding "with sand" or "with gravel", depending on which of these two materials is dominant[^3^][3][^6^][6].
-const ORGANIC_CONTENT_THRESHOLD = 0.75; // N, O, P, and Q: Ratio of liquid limit with and without drying in oven for organic soil[^7^][7][^8^][8]
-
-
 function USCS_D2487SoilClassification(data: SoilData): SoilClassification {
   if (data.percentagePassing0075mm > GRAIN_SIZE_THRESHOLD) {
     return classifyFineGrainedSoil(data);
