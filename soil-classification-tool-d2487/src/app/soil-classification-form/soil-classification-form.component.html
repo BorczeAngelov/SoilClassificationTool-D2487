@@ -1,106 +1,97 @@
-<form>
-    <mat-card>
-      <mat-card-title>Particle Size Distribution</mat-card-title>
-      <mat-form-field appearance="fill">
-        <mat-label>Percentage of Gravel</mat-label>
-        <input matInput type="number" min="0" max="100">
-        <mat-hint>Gravel is the soil fraction with particle sizes larger than 4.75 mm.</mat-hint>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>Percentage of Sand</mat-label>
-        <input matInput type="number" min="0" max="100">
-        <mat-hint>Sand is the soil fraction with particle sizes between 0.075 mm and 4.75 mm.</mat-hint>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>Percentage of Silt</mat-label>
-        <input matInput type="number" min="0" max="100">
-        <mat-hint>Silt is the soil fraction with particle sizes between 0.002 mm and 0.075 mm.</mat-hint>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>Percentage of Clay</mat-label>
-        <input matInput type="number" min="0" max="100">
-        <mat-hint>Clay is the soil fraction with particle sizes smaller than 0.002 mm.</mat-hint>
-      </mat-form-field>
-    </mat-card>
-  
-    <mat-card>
-      <mat-card-title>Soil Gradation - Option 1</mat-card-title>
-      <mat-form-field appearance="fill">
-        <mat-label>Coefficient of Curvature (Cc)</mat-label>
-        <input matInput type="number">
-        <mat-hint>Cc is the ratio of the square of the particle diameter at 30% passing to the product of the particle diameters at 10% and 60% passing.</mat-hint>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>Coefficient of Uniformity (Cu)</mat-label>
-        <input matInput type="number">
-        <mat-hint>Cu is the ratio of the particle diameter at 60% passing to the particle diameter at 10% passing.</mat-hint>
-      </mat-form-field>
-    </mat-card>
-  
-    <mat-card>
-      <mat-card-title>Particle Diameter Percentiles - Option 2</mat-card-title>
-      <mat-form-field appearance="fill">
-        <mat-label>d10</mat-label>
-        <input matInput type="number">
-        <mat-hint>d10 is the particle diameter at 10% passing.</mat-hint>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>d30</mat-label>
-        <input matInput type="number">
-        <mat-hint>d30 is the particle diameter at 30% passing.</mat-hint>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>d60</mat-label>
-        <input matInput type="number">
-        <mat-hint>d60 is the particle diameter at 60% passing.</mat-hint>
-      </mat-form-field>
-    </mat-card>
-  
-    <mat-card>
-      <mat-card-title>Sieve Analysis</mat-card-title>
-      <mat-form-field appearance="fill">
-        <mat-label>Percentage Passing Sieve No.200</mat-label>
-        <input matInput type="number" min="0" max="100">
-        <mat-hint>This is the percentage of soil particles that pass through a No. 200 sieve (0.075 mm).</mat-hint>
-      </mat-form-field>
-    </mat-card>
-  
-    <mat-card>
-      <mat-card-title>Atterberg Limits</mat-card-title>
-      <mat-form-field appearance="fill">
-        <mat-label>Liquid Limit (LL)</mat-label>
-        <input matInput type="number">
-        <mat-hint>LL is the moisture content at which the soil changes from a liquid state to a plastic state.</mat-hint>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>Plasticity Index (PI)</mat-label>
-        <input matInput type="number">
-        <mat-hint>PI is the difference between the liquid limit and the plastic limit of the soil.</mat-hint>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>Atterberg Limits Symbol</mat-label>
-        <input matInput type="text">
-        <mat-hint>This is the symbol that represents the position of the soil on the plasticity chart.</mat-hint>
-      </mat-form-field>
-    </mat-card>
-  
-    <mat-card>
-      <mat-card-title>Organic Content</mat-card-title>
-      <mat-form-field appearance="fill">
-        <mat-label>Percentage of Organic Content</mat-label>
-        <input matInput type="number" min="0" max="100">
-        <mat-hint>This is the percentage of organic matter in the soil sample.</mat-hint>
-      </mat-form-field>
-    </mat-card>
-  
-    <button mat-raised-button color="primary">Classify</button>
-  </form>
-  
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Soil Classification Form</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form class="example-container">
+            <div>
+                <!-- <h4>Particle Size Distribution</h4> -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Percentage of Gravel</mat-label>
+                    <input matInput type="number" min="0" max="100">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Percentage of Sand</mat-label>
+                    <input matInput type="number" min="0" max="100">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Percentage of Silt</mat-label>
+                    <input matInput type="number" min="0" max="100">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Percentage of Clay</mat-label>
+                    <input matInput type="number" min="0" max="100">
+                </mat-form-field>
+            </div>
+
+            <div>
+                <!-- <h4>Sieve Analysis</h4> -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Percentage Passing Sieve No.200</mat-label>
+                    <input matInput type="number" min="0" max="100">
+                </mat-form-field>
+                            
+                <!-- <h4>Atterberg Limits</h4> -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Liquid Limit (LL)</mat-label>
+                    <input matInput type="number">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Plasticity Index (PI)</mat-label>
+                    <input matInput type="number">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Atterberg Limits Symbol</mat-label>
+                    <input matInput type="text">
+                </mat-form-field>
+            
+                
+                <!-- <h4>Organic Content</h4> -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Percentage of Organic Content</mat-label>
+                    <input matInput type="number" min="0" max="100">
+                </mat-form-field>
+            </div>
+
+            <div style="display: flex; justify-content: flex-start;">
+                <div>
+                    <h4>Soil Gradation - Option 1</h4>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Coefficient of Curvature (Cc)</mat-label>
+                        <input matInput type="number">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Coefficient of Uniformity (Cu)</mat-label>
+                        <input matInput type="number">
+                    </mat-form-field>
+                </div>
+
+                <div style="margin-left: 8px;">
+                    <h4>Particle Diameter Percentiles - Option 2</h4>
+                    <mat-form-field appearance="fill">
+                        <mat-label>d10</mat-label>
+                        <input matInput type="number">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>d30</mat-label>
+                        <input matInput type="number">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>d60</mat-label>
+                        <input matInput type="number">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <button mat-raised-button color="primary">Classify</button>
+        </form>
+    </mat-card-content>
+</mat-card>
