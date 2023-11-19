@@ -1,9 +1,27 @@
-
 <mat-card>
-    <mat-card-header>
-      <mat-card-title>Classification Result</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <p>soil-classification-result works!</p>
-    </mat-card-content>
+  <mat-card-content>
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Classification Result</mat-label>
+      <input matInput [value]="soilClassificationService.rawOutputData" readonly>
+      <mat-icon matSuffix>label</mat-icon>
+    </mat-form-field>
+
+
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Debug Info:
+          </mat-panel-title>
+          <mat-panel-description>
+            Raw Input Data
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        
+      <pre>{{ soilClassificationService.rawInputData | json }}</pre>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </mat-card-content>
 </mat-card>

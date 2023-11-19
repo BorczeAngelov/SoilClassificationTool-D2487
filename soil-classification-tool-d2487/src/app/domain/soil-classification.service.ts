@@ -20,11 +20,15 @@ export const UPPER_PLASTICITY_INDEX_THRESHOLD = 7; // Upper bound of plasticity 
   providedIn: 'root'
 })
 export class SoilClassificationService {
+  public rawInputData!: SoilData;
+  public rawOutputData!: string;
+
   constructor() { }
 
-  classifySoilWithD2487Standard(data: SoilData): string {
-    console.log("input data", data);
-
+  classifySoilWithD2487Standard(data: SoilData): string {    
+    this.rawInputData = data;
+    console.log(this.rawInputData);
+    
     var result;
     if (data.percentagePassingSieveNo200 < GRAIN_SIZE_THRESHOLD) {
       result = this.classifyCoarseGrainedSoil(data);
@@ -32,8 +36,8 @@ export class SoilClassificationService {
       result = this.classifyFineGrainedSoil(data);
     }
     
-    console.log("output data", result);
-
+    this.rawOutputData = result;
+    console.log(this.rawOutputData);
     return result;
   }
 

@@ -39,7 +39,9 @@ export class SoilClassificationFormComponent {
   }
 
   onSubmit() {
-    const soilData: SoilData = this.soilForm.value;
-    this.soilClassificationService.classifySoilWithD2487Standard(soilData);    
+    if (this.soilForm.valid){      
+      const soilData: SoilData = this.soilForm.value;
+      this.soilClassificationService.classifySoilWithD2487Standard(soilData);    
+    }
   }
 }

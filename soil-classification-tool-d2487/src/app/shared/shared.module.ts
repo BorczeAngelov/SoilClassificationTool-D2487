@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [],
@@ -23,7 +25,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatDividerModule,
     MatGridListModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatExpansionModule,
+    MatIconModule
   ],
   exports: [
     MatSlideToggleModule,
@@ -34,7 +38,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatDividerModule,
     MatGridListModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatExpansionModule,
+    MatIconModule
   ]
 })
 export class SharedModule { }

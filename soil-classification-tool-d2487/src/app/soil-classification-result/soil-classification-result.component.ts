@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
+import { SoilClassificationService } from '../domain/soil-classification.service';
 
 @Component({
   selector: 'app-soil-classification-result',
@@ -11,4 +12,8 @@ import { SharedModule } from '../shared/shared.module';
 })
 export class SoilClassificationResultComponent {
 
+  constructor(public soilClassificationService: SoilClassificationService) { }
+
+  ngOnInit(): void {
+  }
 }
