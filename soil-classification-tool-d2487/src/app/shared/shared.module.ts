@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [],
@@ -19,7 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     MatToolbarModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatGridListModule
   ],
   exports: [
     MatSlideToggleModule,
@@ -28,7 +30,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     MatToolbarModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatGridListModule
   ]
 })
 export class SharedModule { }
