@@ -1,14 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+import { SharedModule } from './shared/shared.module';
+
 import { SoilClassificationFormComponent } from './soil-classification-form/soil-classification-form.component';
 import { SoilClassificationResultComponent } from './soil-classification-result/soil-classification-result.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MatSlideToggleModule, SoilClassificationFormComponent, SoilClassificationResultComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet, 
+    SharedModule,    
+    SoilClassificationFormComponent, SoilClassificationResultComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

@@ -1,1 +1,15 @@
-<p>soil-classification-form works!</p>
+<form>
+    <mat-form-field appearance="fill">
+      <mat-label>Percentage of Gravel</mat-label>
+      <input matInput type="number" min="0" max="100">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Percentage of Sand</mat-label>
+      <input matInput type="number" min="0" max="100">
+    </mat-form-field>
+  
+    <!-- Add more form fields for the other properties in the same way -->
+  
+    <button mat-raised-button color="primary">Classify</button>
+  </form>
