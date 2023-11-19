@@ -1,13 +1,15 @@
-
 <main class="main">
   <div class="content">
     <div class="left-side">
-      <h1>{{ title }} - Change</h1>
-      <h2>Hello world :) </h2>
+      <h1>{{ title }}</h1>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
-    
+    <mat-slide-toggle>Angular Material Works. Toggle me!</mat-slide-toggle>
   </div>
+  
+  <!-- Add your components here -->
+  <app-soil-classification-form></app-soil-classification-form>
+  <app-soil-classification-result></app-soil-classification-result>
 </main>
 
 <router-outlet></router-outlet>
