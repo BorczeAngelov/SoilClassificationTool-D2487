@@ -1,6 +1,14 @@
 <mat-card>
   <mat-card-content>
 
+    <div style="color: red; font-weight: bold; text-align: center;">
+      Disclaimer: This tool is still a prototype and has not been fully tested and validated for all possible soil
+      samples and scenarios. The results of this tool are based on the ASTM D2487 standard, but they may not be accurate
+      or reliable for your specific soil sample or project. You should always verify the results of this tool with the
+      ASTM D2487 flowcharts and other relevant sources before using them in production. Use this tool at your own risk
+      and discretion.
+    </div>
+
     <mat-form-field style="width: 100%;">
       <mat-label>Classification Result</mat-label>
       <input matInput [value]="soilClassificationService.rawOutputData" readonly>
@@ -9,7 +17,7 @@
 
 
     <mat-accordion>
-      <mat-expansion-panel hideToggle>
+      <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
             Debug Info:
@@ -18,8 +26,26 @@
             Raw Input Data
           </mat-panel-description>
         </mat-expansion-panel-header>
-        
-      <pre>{{ soilClassificationService.rawInputData | json }}</pre>
+
+        <pre>{{ soilClassificationService.rawInputData | json }}</pre>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Flowchart Functions (Work-in-Progress)
+          </mat-panel-title>
+          <mat-panel-description>
+            Source Code: https://github.com/BorczeAngelov/SoilClassificationTool-D2487/
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <pre>soil-classification-tool-d2487\src\app\domain\flowchart-functions\classifyCoarseGrainedSoilWithDominantMaterialGravel.ts</pre>
+        <pre>soil-classification-tool-d2487\src\app\domain\flowchart-functions\classifyCoarseGrainedSoilWithDominantMaterialSand.ts</pre>
+        <pre>soil-classification-tool-d2487\src\app\domain\flowchart-functions\classifyFineGrainedSoilWithLiquidLimitAboveHalf.ts</pre>
+        <pre>soil-classification-tool-d2487\src\app\domain\flowchart-functions\classifyFineGrainedSoilWithLiquidLimitBelowHalf.ts</pre>
+        <pre>soil-classification-tool-d2487\src\app\domain\flowchart-functions\extendNameIfNeededFunctions.ts</pre>
+        <pre>soil-classification-tool-d2487\src\app\domain\soil-classification.service.ts</pre>        
       </mat-expansion-panel>
     </mat-accordion>
 
