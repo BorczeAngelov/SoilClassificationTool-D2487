@@ -9,6 +9,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
@@ -21,7 +22,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatToolbarModule,
     MatCardModule,
     MatDividerModule,
-    MatGridListModule
+    MatGridListModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatSlideToggleModule,
@@ -31,7 +33,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatToolbarModule,
     MatCardModule,
     MatDividerModule,
-    MatGridListModule
+    MatGridListModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

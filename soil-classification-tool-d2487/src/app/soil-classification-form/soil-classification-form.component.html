@@ -3,27 +3,27 @@
         <mat-card-title>Soil Classification Form</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <form class="example-container">
+        <form class="example-container" [formGroup]="soilForm" (submit)="onSubmit()">
             <div>
                 <!-- <h4>Particle Size Distribution</h4> -->
                 <mat-form-field appearance="fill">
                     <mat-label>Percentage of Gravel</mat-label>
-                    <input matInput type="number" min="0" max="100">
+                    <input matInput formControlName="percentageOfGravel" type="number" min="0" max="100">
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                     <mat-label>Percentage of Sand</mat-label>
-                    <input matInput type="number" min="0" max="100">
+                    <input matInput formControlName="percentageOfSand" type="number" min="0" max="100">
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                     <mat-label>Percentage of Silt</mat-label>
-                    <input matInput type="number" min="0" max="100">
+                    <input matInput formControlName="percentageOfSilt" type="number" min="0" max="100">
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                     <mat-label>Percentage of Clay</mat-label>
-                    <input matInput type="number" min="0" max="100">
+                    <input matInput formControlName="percentageOfClay" type="number" min="0" max="100">
                 </mat-form-field>
             </div>
 
@@ -31,30 +31,30 @@
                 <!-- <h4>Sieve Analysis</h4> -->
                 <mat-form-field appearance="fill">
                     <mat-label>Percentage Passing Sieve No.200</mat-label>
-                    <input matInput type="number" min="0" max="100">
+                    <input matInput formControlName="percentagePassingSieveNo200" type="number" min="0" max="100">
                 </mat-form-field>
                             
                 <!-- <h4>Atterberg Limits</h4> -->
                 <mat-form-field appearance="fill">
                     <mat-label>Liquid Limit (LL)</mat-label>
-                    <input matInput type="number">
+                    <input matInput formControlName="liquidLimit" type="number">
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                     <mat-label>Plasticity Index (PI)</mat-label>
-                    <input matInput type="number">
+                    <input matInput formControlName="plasticityIndex" type="number">
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                     <mat-label>Atterberg Limits Symbol</mat-label>
-                    <input matInput type="text">
+                    <input matInput formControlName="atterbergLimitsSymbol" type="text">
                 </mat-form-field>
             
                 
                 <!-- <h4>Organic Content</h4> -->
                 <mat-form-field appearance="fill">
                     <mat-label>Percentage of Organic Content</mat-label>
-                    <input matInput type="number" min="0" max="100">
+                    <input matInput formControlName="percentageOfOrganicContent" type="number" min="0" max="100">
                 </mat-form-field>
             </div>
 
@@ -63,12 +63,12 @@
                     <h4>Soil Gradation - Option 1</h4>
                     <mat-form-field appearance="fill">
                         <mat-label>Coefficient of Curvature (Cc)</mat-label>
-                        <input matInput type="number">
+                        <input matInput formControlName="coefficientOfCurvature" type="number">
                     </mat-form-field>
 
                     <mat-form-field appearance="fill">
                         <mat-label>Coefficient of Uniformity (Cu)</mat-label>
-                        <input matInput type="number">
+                        <input matInput formControlName="coefficientOfUniformity" type="number">
                     </mat-form-field>
                 </div>
 
@@ -76,22 +76,22 @@
                     <h4>Particle Diameter Percentiles - Option 2</h4>
                     <mat-form-field appearance="fill">
                         <mat-label>d10</mat-label>
-                        <input matInput type="number">
+                        <input matInput  formControlName="d10" type="number">
                     </mat-form-field>
 
                     <mat-form-field appearance="fill">
                         <mat-label>d30</mat-label>
-                        <input matInput type="number">
+                        <input matInput  formControlName="d30" type="number">
                     </mat-form-field>
 
                     <mat-form-field appearance="fill">
                         <mat-label>d60</mat-label>
-                        <input matInput type="number">
+                        <input matInput formControlName="d60" type="number">
                     </mat-form-field>
                 </div>
             </div>
 
-            <button mat-raised-button color="primary">Classify</button>
+            <button mat-raised-button type="submit" color="primary">Classify</button>
         </form>
     </mat-card-content>
 </mat-card>

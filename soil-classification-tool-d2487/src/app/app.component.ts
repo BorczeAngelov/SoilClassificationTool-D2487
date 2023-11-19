@@ -12,8 +12,8 @@ import { SoilClassificationResultComponent } from './soil-classification-result/
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet, 
-    SharedModule,    
+    RouterOutlet,
+    SharedModule,
     SoilClassificationFormComponent, SoilClassificationResultComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

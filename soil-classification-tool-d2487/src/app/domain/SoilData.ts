@@ -1,4 +1,4 @@
-type SoilData = {
+export type SoilData = {
     percentageOfGravel: number; // Percentage of Gravel (G - Flowchart ASTM D2487-98)
     percentageOfSand: number; // Percentage of Sand (S - Flowchart ASTM D2487-98)
     percentageOfSilt: number; // Percentage of Silt (M - Flowchart ASTM D2487-98)
