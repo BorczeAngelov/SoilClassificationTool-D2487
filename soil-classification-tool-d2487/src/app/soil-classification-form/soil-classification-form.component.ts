@@ -40,6 +40,6 @@ export class SoilClassificationFormComponent {
 
   onSubmit() {
     const soilData: SoilData = this.soilForm.value;
-    this.soilClassificationService.classifySoil(soilData);    
+    this.soilClassificationService.classifySoilWithD2487Standard(soilData);    
   }
 }

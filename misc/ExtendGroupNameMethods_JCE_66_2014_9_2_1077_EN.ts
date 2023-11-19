@@ -23,6 +23,8 @@
 // - Footnote [P]: The function should be able to handle cases where IP at or above the A-line.
 // - Footnote [Q]: The function should be able to handle cases where IP below the A-line.
 
+import { SoilData } from "../soil-classification-tool-d2487/src/app/domain/SoilData";
+
 
 // CriteriaClassificationThresholds
 const ExtendGroupName_SAND_THRESHOLD = 15;
