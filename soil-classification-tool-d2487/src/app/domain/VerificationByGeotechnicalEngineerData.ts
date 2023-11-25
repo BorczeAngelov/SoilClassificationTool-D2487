@@ -1,0 +1,24 @@
+export type VerificationByGeotechnicalEngineerData = {
+    dateOfTesting: Date;    
+    geotechnicalEngineer: string;    
+    geotechnicalEngineerCompany: string;
+    geotechnicalEngineerContact: string;
+    classificationByEngineer: string;
+    classificationBySoftware: string;
+    doesClassificationMatch: boolean;
+    commentByEngineer: string;
+    percentageOfGravel: number;
+    percentageOfSand: number;
+    percentageOfSilt: number;
+    percentageOfClay: number;
+    coefficientOfCurvature: number;
+    coefficientOfUniformity: number;
+    d10: number;
+    d30: number;
+    d60: number;
+    percentagePassingSieveNo200: number;
+    liquidLimit: number;
+    plasticityIndex: number;
+    atterbergLimitsSymbol: string;
+    percentageOfOrganicContent: number;
+};
