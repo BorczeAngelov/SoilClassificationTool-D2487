@@ -15,6 +15,7 @@
       <mat-icon matSuffix>label</mat-icon>
     </mat-form-field>
 
+    <button mat-stroked-button type="submit" color="primary" (click)="DownloadCsvFile()">Download Classification Result (CSV)</button>
 
     <mat-accordion>
       <mat-expansion-panel>
@@ -27,6 +28,7 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
 
+        <pre>{{ soilClassificationService.rawCsvData | json }}</pre>
         <pre>{{ soilClassificationService.rawInputData | json }}</pre>
       </mat-expansion-panel>
 

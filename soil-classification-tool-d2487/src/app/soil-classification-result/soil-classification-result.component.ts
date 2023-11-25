@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { SoilClassificationService } from '../domain/soil-classification.service';
+import { CsvUtilService } from '../domain/csv-util.service';
 
 @Component({
   selector: 'app-soil-classification-result',
@@ -12,8 +13,14 @@ import { SoilClassificationService } from '../domain/soil-classification.service
 })
 export class SoilClassificationResultComponent {
 
-  constructor(public soilClassificationService: SoilClassificationService) { }
+  constructor(
+    public soilClassificationService: SoilClassificationService,
+    public csvUtilService: CsvUtilService) { }
 
   ngOnInit(): void {
+  }
+
+  DownloadCsvFile(){
+    this.csvUtilService.downloadCSVFile(this.soilClassificationService.rawCsvData);
   }
 }

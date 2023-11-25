@@ -4,6 +4,7 @@ import { classifyCoarseGrainedSoilWithDominantMaterialGravel } from './flowchart
 import { classifyCoarseGrainedSoilWithDominantMaterialSand } from './flowchart-functions/classifyCoarseGrainedSoilWithDominantMaterialSand';
 import { classifyFineGrainedSoilWithLiquidLimitBelowHalf } from './flowchart-functions/classifyFineGrainedSoilWithLiquidLimitBelowHalf';
 import { classifyFineGrainedSoilWithLiquidLimitAboveHalf } from './flowchart-functions/classifyFineGrainedSoilWithLiquidLimitAboveHalf';
+import { CsvUtilService } from './csv-util.service';
 
 export const GRAIN_SIZE_THRESHOLD_50 = 50; // Percentage of soil passing 0.075 mm sieve
 export const LIQUID_LIMIT_THRESHOLD_50 = 50; // Liquid limit for high plasticity soil
@@ -14,8 +15,9 @@ export const LIQUID_LIMIT_THRESHOLD_50 = 50; // Liquid limit for high plasticity
 export class SoilClassificationService {
   public rawInputData!: SoilData;
   public rawOutputData!: string;
+  public rawCsvData!: string;
 
-  constructor() { }
+  constructor(private csvUtilService: CsvUtilService) { }
 
   classifySoilWithD2487Standard(data: SoilData): string {
     this.rawInputData = data;
@@ -28,6 +30,7 @@ export class SoilClassificationService {
     }
 
     this.rawOutputData = result;
+    this.rawCsvData = this.csvUtilService.convertToCSV(this.rawInputData, this.rawOutputData);
     return result;
   }
 
