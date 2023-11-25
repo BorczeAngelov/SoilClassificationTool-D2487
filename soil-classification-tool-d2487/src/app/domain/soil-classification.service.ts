@@ -55,10 +55,10 @@ export class SoilClassificationService {
   }
 
   private classifyFineGrainedSoil(data: SoilData): string {
-    if (data.liquidLimit > LIQUID_LIMIT_THRESHOLD_50) {
-      return classifyFineGrainedSoilWithLiquidLimitAboveHalf(data);
-    } else {
+    if (data.liquidLimit < LIQUID_LIMIT_THRESHOLD_50) {
       return classifyFineGrainedSoilWithLiquidLimitBelowHalf(data);
+    } else {
+      return classifyFineGrainedSoilWithLiquidLimitAboveHalf(data);
     }
   }
 }
