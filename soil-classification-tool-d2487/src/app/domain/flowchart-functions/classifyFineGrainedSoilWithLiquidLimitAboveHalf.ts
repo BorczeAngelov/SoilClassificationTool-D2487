@@ -1,6 +1,5 @@
 import { SoilData } from "../SoilData";
 import { COARSE_FRACTION_THRESHOLD_15, UPPER_PLASTICITY_INDEX_THRESHOLD_7 } from "../soil-classification.service";
-import { extendNameIfNeeded_Sand, extendNameIfNeeded_Gravel } from "./extendNameIfNeededFunctions";
 
 export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData): string {
     let groupName = "";
@@ -15,8 +14,8 @@ export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData):
         groupName = "MH-Elastic silt";
     }
 
-    groupName = extendNameIfNeeded_Sand(data, groupName);
-    groupName = extendNameIfNeeded_Gravel(data, groupName);
+    // groupName = extendNameIfNeeded_Sand(data, groupName);
+    // groupName = extendNameIfNeeded_Gravel(data, groupName);
 
     return groupName;
 }

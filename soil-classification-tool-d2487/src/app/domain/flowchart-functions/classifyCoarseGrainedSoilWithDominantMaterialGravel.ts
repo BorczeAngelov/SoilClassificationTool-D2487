@@ -8,12 +8,11 @@ export function classifyCoarseGrainedSoilWithDominantMaterialGravel(data: SoilDa
     const COEFFICIENT_OF_UNIFORMITY_4 = 4;
     const COEFFICIENT_OF_CURVATURE_LOWER_1 = 1;
     const COEFFICIENT_OF_CURVATURE_UPPER_3 = 3;
+
     const SAND_THRESHOLD_15 = 15;
-
-    let groupName = "";
-
     let isSandBelowThreshold = data.percentageOfSand < SAND_THRESHOLD_15;
-
+    
+    let groupName = "";
     if (data.percentagePassingSieveNo200 < FINES_LOWER_5) {
 
         if (data.coefficientOfUniformity >= COEFFICIENT_OF_UNIFORMITY_4 &&
