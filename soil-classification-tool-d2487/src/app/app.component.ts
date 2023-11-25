@@ -19,5 +19,5 @@ import { SoilClassificationResultComponent } from './soil-classification-result/
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Soil Classification Tool - ASTM D2487 (Prototype v0.0.2.2)';
+  title = 'Soil Classification Tool - ASTM D2487 (Prototype v0.0.3.1)';
 }
