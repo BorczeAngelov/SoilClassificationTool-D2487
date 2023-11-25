@@ -15,7 +15,7 @@
       <mat-icon matSuffix>label</mat-icon>
     </mat-form-field>
 
-    <button mat-stroked-button type="submit" color="primary" (click)="DownloadCsvFile()">Download Classification Result (CSV)</button>
+    <!-- <button mat-stroked-button type="submit" color="primary" (click)="DownloadCsvFile()">Download Classification Result (CSV)</button> -->
 
     <mat-accordion>
       <mat-expansion-panel>
@@ -27,8 +27,6 @@
             Raw Input Data
           </mat-panel-description>
         </mat-expansion-panel-header>
-
-        <pre>{{ soilClassificationService.rawCsvData | json }}</pre>
         <pre>{{ soilClassificationService.rawInputData | json }}</pre>
       </mat-expansion-panel>
 
@@ -41,12 +39,9 @@
             Source Code: https://github.com/BorczeAngelov/SoilClassificationTool-D2487/
           </mat-panel-description>
         </mat-expansion-panel-header>
-
-        <pre>Work-in-Progress: soil-classification-tool-d2487\src\app\domain\flowchart-functions\classifyFineGrainedSoilWithLiquidLimitAboveHalf.ts</pre>
-        <pre>Work-in-Progress: soil-classification-tool-d2487\src\app\domain\flowchart-functions\classifyFineGrainedSoilWithLiquidLimitBelowHalf.ts</pre>
-
-        <pre>Validate the classification tool for all possible soil samples (edge-cases).</pre>
-        <pre>Improve the user-input validation. For example, disable the input diameter fields if the coefficient values are given.</pre>
+        <pre>1. Display a form for the geotechnical engineer to verify the results and submit them.</pre>
+        <pre>2. Remove the “Disclaimer” when there are sufficient verifications by the geotechnical engineer using real soil samples.</pre>
+        <pre>3. Improve the user-input validation. For example, disable the input diameter fields if the coefficient values are given.</pre>
       </mat-expansion-panel>
     </mat-accordion>
 

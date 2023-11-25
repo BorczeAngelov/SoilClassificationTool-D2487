@@ -20,7 +20,7 @@ export class SoilClassificationResultComponent {
   ngOnInit(): void {
   }
 
-  DownloadCsvFile(){
-    this.csvUtilService.downloadCSVFile(this.soilClassificationService.rawCsvData);
-  }
+  // DownloadCsvFile(){
+  //   this.csvUtilService.downloadCSVFile(this.soilClassificationService.rawCsvData);
+  // }
 }

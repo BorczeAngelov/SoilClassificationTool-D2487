@@ -39,36 +39,11 @@ export class CsvUtilService {
     // Return the verification data object
     return verificationData;
   }
-
-  // Modify the convertToCSV function to use the verification data object instead of the raw input and output data
+  
   convertToCSV(verificationData: VerificationByGeotechnicalEngineerData): string {
     let csvRows = [];
-    // Get the keys and values of the verification data object and join them with commas
-    let verificationKeys = Object.keys(verificationData).join(',');
     let verificationValues = Object.values(verificationData).join(',');
-    // Push the keys and values to the csv rows array
-    csvRows.push(verificationKeys);
     csvRows.push(verificationValues);
-    // Return the csvData as a string
     return csvRows.join('\n');
   }
-
-  // The downloadCSVFile function remains the same as before
-  downloadCSVFile(csvData: string) {
-    // Check if the csvData is not empty
-    if (csvData) {
-      let blob = new Blob([csvData], { type: 'text/csv' });
-      let url = window.URL.createObjectURL(blob);
-      let a = document.createElement('a');
-      a.href = url;
-      a.download = 'data.csv';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    } else {
-      console.error('No CSV data to download');
-    }
-  }
-
 }
