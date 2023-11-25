@@ -6,7 +6,9 @@ export type SoilData = {
 
     coefficientOfCurvature: number; // Coefficient of Curvature (Cc) - Optional
     coefficientOfUniformity: number; // Coefficient of Uniformity (Cu) - Optional
-    d10: number; // d10 - Optional
+
+    // The diameter of soil particle corresponding to 10%, 30% and 60% finer respectively.
+    d10: number; // d10 - Optional 
     d30: number; // d30 - Optional
     d60: number; // d60 - Optional
 

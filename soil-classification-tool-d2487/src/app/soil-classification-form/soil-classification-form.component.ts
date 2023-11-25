@@ -17,7 +17,7 @@ export class SoilClassificationFormComponent {
   soilForm: FormGroup;
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private soilClassificationService: SoilClassificationService
   ) {
     this.soilForm = this.fb.group({
@@ -41,7 +41,17 @@ export class SoilClassificationFormComponent {
   onSubmit() {
     if (this.soilForm.valid){      
       const soilData: SoilData = this.soilForm.value;
+
+      
+      const areCoefficientValuesGiven = !soilData.coefficientOfCurvature || !soilData.coefficientOfUniformity;
+      if (areCoefficientValuesGiven) {
+                  
+          soilData.coefficientOfCurvature = this.soilClassificationService.calculateCoefficientOfCurvature(soilData.d10, soilData.d30, soilData.d60);          
+          soilData.coefficientOfUniformity = this.soilClassificationService.calculateCoefficientOfUniformity(soilData.d10, soilData.d60);        
+      }
+      
       this.soilClassificationService.classifySoilWithD2487Standard(soilData);    
     }
   }
+
 }

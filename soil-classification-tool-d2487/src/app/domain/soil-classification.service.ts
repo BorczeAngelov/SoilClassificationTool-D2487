@@ -34,23 +34,31 @@ export class SoilClassificationService {
 
   constructor() { }
 
-  classifySoilWithD2487Standard(data: SoilData): string {    
+  classifySoilWithD2487Standard(data: SoilData): string {
     this.rawInputData = data;
     console.log(this.rawInputData);
-    
+
     var result;
     if (data.percentagePassingSieveNo200 < GRAIN_SIZE_THRESHOLD_50) {
       result = this.classifyCoarseGrainedSoil(data);
     } else {
       result = this.classifyFineGrainedSoil(data);
     }
-    
+
     this.rawOutputData = result;
     console.log(this.rawOutputData);
     return result;
   }
 
-  classifyCoarseGrainedSoil(data: SoilData): string {
+  calculateCoefficientOfCurvature(d10: number, d30: number, d60: number): number {
+    return (d30 * d30) / (d10 * d60);
+  }
+
+  calculateCoefficientOfUniformity(d10: number, d60: number): number {
+    return d60 / d10;
+  }
+
+  private classifyCoarseGrainedSoil(data: SoilData): string {
     if (data.percentageOfGravel > data.percentageOfSand) {
       return classifyCoarseGrainedSoilWithDominantMaterialGravel(data);
     } else {
@@ -59,7 +67,7 @@ export class SoilClassificationService {
   }
 
 
-  classifyFineGrainedSoil(data: SoilData): string {
+  private classifyFineGrainedSoil(data: SoilData): string {
     if (data.liquidLimit > LIQUID_LIMIT_THRESHOLD_50) {
       return classifyFineGrainedSoilWithLiquidLimitAboveHalf(data);
     } else {
