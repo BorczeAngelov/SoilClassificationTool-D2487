@@ -2,7 +2,7 @@ import { SoilData } from "../SoilData";
 
 export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData): string {
     // Declare constants locally
-    const ORGANIC_CONTENT_75 = 75;
+    const ORGANIC_CONTENT_30 = 30;
 
     const PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15 = 15;
     const PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30 = 30;
@@ -10,10 +10,9 @@ export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData):
     const SECONDARY_MATERIAL_THRESHOLD_15 = 15;
 
     let groupName = "";
-    if (data.percentageOfOrganicContent < ORGANIC_CONTENT_75) {
-        
-        // TODO 1: if (data.plasticityIndex >= plots on or above "A" line) 
-        {
+    if (data.percentageOfOrganicContent < ORGANIC_CONTENT_30) {
+
+        if (data.atterbergLimitsSymbol == "CH") {
 
             if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
                 if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
@@ -47,8 +46,7 @@ export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData):
             }
 
         }
-        // TODO 2: if (data.plasticityIndex < plots below "A" line) 
-        {
+        else if (data.atterbergLimitsSymbol == "MH") {
 
             if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
                 if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
@@ -81,12 +79,11 @@ export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData):
                     }
                 }
             }
-
         }
 
     }
     else {
-        groupName = "OH- See figure 1.8" // ID=73 // Open TODO
+        groupName = "OH-Highly Organic Soil (Peat)" // ID=73
     }
 
     return groupName;
