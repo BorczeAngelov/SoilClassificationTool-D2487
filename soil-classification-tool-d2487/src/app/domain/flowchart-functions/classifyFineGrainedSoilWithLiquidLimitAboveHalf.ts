@@ -1,20 +1,93 @@
 import { SoilData } from "../SoilData";
 
 export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData): string {
+    // Declare constants locally
+    const ORGANIC_CONTENT_75 = 75;
+
+    const PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15 = 15;
+    const PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30 = 30;
+
+    const SECONDARY_MATERIAL_THRESHOLD_15 = 15;
+
     let groupName = "";
+    if (data.percentageOfOrganicContent < ORGANIC_CONTENT_75) {
+        
+        // TODO 1: if (data.plasticityIndex >= plots on or above "A" line) 
+        {
 
-    // if (data.percentagePassingSieveNo200 < COARSE_FRACTION_THRESHOLD_15) {
-    //     if (data.plasticityIndex < UPPER_PLASTICITY_INDEX_THRESHOLD_7) {
-    //         groupName = "CH-Fat clay";
-    //     } else {
-    //         groupName = "CH-MH-Fat clay-elastic silt mixture";
-    //     }
-    // } else {
-    //     groupName = "MH-Elastic silt";
-    // }
+            if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
+                if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
+                    groupName = "CH-Fat clay" // ID=59
+                }
+                else {
+                    if (data.percentageOfSand >= data.percentageOfGravel) {
+                        groupName = "CH-Fat clay with sand" // ID=60
+                    }
+                    else {
+                        groupName = "CH-Fat clay with gravel" // ID=61
+                    }
+                }
+            } else {
+                if (data.percentageOfSand >= data.percentageOfGravel) {
+                    if (data.percentageOfGravel < SECONDARY_MATERIAL_THRESHOLD_15) {
+                        groupName = "CH-Sandy fat clay" // ID=62
+                    }
+                    else {
+                        groupName = "CH-Sandy fat clay with gravel" // ID=63
+                    }
+                }
+                else {
+                    if (data.percentageOfSand < SECONDARY_MATERIAL_THRESHOLD_15) {
+                        groupName = "CH-Gravelly fat clay" // ID=64
+                    }
+                    else {
+                        groupName = "CH-Gravelly fat clay with sand" // ID=65
+                    }
+                }
+            }
 
-    // // groupName = extendNameIfNeeded_Sand(data, groupName);
-    // // groupName = extendNameIfNeeded_Gravel(data, groupName);
+        }
+        // TODO 2: if (data.plasticityIndex < plots below "A" line) 
+        {
+
+            if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
+                if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
+                    groupName = "MH-Elastic silt" // ID=66
+                }
+                else {
+                    if (data.percentageOfSand >= data.percentageOfGravel) {
+                        groupName = "MH-Elastic silt with sand" // ID=67
+                    }
+                    else {
+                        groupName = "MH-Elastic silt with gravel" // ID=68
+                    }
+                }
+            }
+            else {
+                if (data.percentageOfSand >= data.percentageOfGravel) {
+                    if (data.percentageOfGravel < SECONDARY_MATERIAL_THRESHOLD_15) {
+                        groupName = "MH-Sandy elastic silt" // ID=69
+                    }
+                    else {
+                        groupName = "MH-Sandy elastic silt with gravel" // ID=70
+                    }
+                }
+                else {
+                    if (data.percentageOfSand < SECONDARY_MATERIAL_THRESHOLD_15) {
+                        groupName = "MH-Gravelly elastic silt" // ID=71
+                    }
+                    else {
+                        groupName = "MH-Gravelly elastic silt with sand" // ID=72
+                    }
+                }
+            }
+
+        }
+
+    }
+    else {
+        groupName = "OH- See figure 1.8" // ID=73 // Open TODO
+    }
 
     return groupName;
 }
