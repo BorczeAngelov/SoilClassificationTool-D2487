@@ -19,5 +19,5 @@ import { SoilClassificationResultComponent } from './soil-classification-result/
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Soil Classification Tool - ASTM D2487 (Prototype v0.0.3.2; Note: classifyCoarseGrainedSoilWithDominantMaterialGravel() is ready for testing)';
+  title = 'Soil Classification Tool - ASTM D2487 (Prototype v0.0.3.4; Note: function "Flowchart for classifying coarse-grained soils" is ready for testing)';
 }

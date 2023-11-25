@@ -9,10 +9,10 @@ export function classifyCoarseGrainedSoilWithDominantMaterialSand(data: SoilData
     const COEFFICIENT_OF_CURVATURE_LOWER_1 = 1;
     const COEFFICIENT_OF_CURVATURE_UPPER_3 = 3;
 
-    
+
     const GRAVEL_THRESHOLD_15 = 15;
     let isGravelBelowThreshold = data.percentageOfSand < GRAVEL_THRESHOLD_15;
-    
+
     let groupName = "";
     if (data.percentagePassingSieveNo200 < FINES_LOWER_5) {
 
@@ -41,18 +41,14 @@ export function classifyCoarseGrainedSoilWithDominantMaterialSand(data: SoilData
             data.coefficientOfCurvature <= COEFFICIENT_OF_CURVATURE_UPPER_3
         ) {
 
-            // TODO 1
-            // if (fines = ML or MH)
-            {
+            if (data.atterbergLimitsSymbol == "ML" || data.atterbergLimitsSymbol == "MH") {
                 if (isGravelBelowThreshold) {
                     groupName = "SW-SM-Well-graded sand with silt"; // ID=23
                 } else {
                     groupName = "SW-SM-Well-graded sand with silt and gravel"; // ID=24
                 }
             }
-            // TODO 2
-            // else if (fines = CL,CH or CL-ML)
-            {
+            else if (data.atterbergLimitsSymbol == "CL" || data.atterbergLimitsSymbol == "CH" || data.atterbergLimitsSymbol == "CL-ML") {
                 if (isGravelBelowThreshold) {
                     groupName = "SW-SC-Well-graded sand with clay (or silty clay)"; // ID=25
                 } else {
@@ -62,18 +58,14 @@ export function classifyCoarseGrainedSoilWithDominantMaterialSand(data: SoilData
 
         } else {
 
-            // TODO 1
-            // if (fines = ML or MH)
-            {
+            if (data.atterbergLimitsSymbol == "ML" || data.atterbergLimitsSymbol == "MH") {
                 if (isGravelBelowThreshold) {
                     groupName = "SP-SM-Poorly graded sand with silt"; // ID=27
                 } else {
                     groupName = "SP-SM-Poorly graded sand with silt and gravel"; // ID=28
                 }
             }
-            // TODO 2
-            // else if (fines = CL,CH or CL-ML)
-            {
+            else if (data.atterbergLimitsSymbol == "CL" || data.atterbergLimitsSymbol == "CH" || data.atterbergLimitsSymbol == "CL-ML") {
                 if (isGravelBelowThreshold) {
                     groupName = "SP-SC-Poorly graded sand with clay (or silty clay)"; // ID=29
                 } else {
@@ -85,27 +77,21 @@ export function classifyCoarseGrainedSoilWithDominantMaterialSand(data: SoilData
 
     } else {
 
-        // TODO 1
-        // if (fines = ML or MH)
-        {
+        if (data.atterbergLimitsSymbol == "ML" || data.atterbergLimitsSymbol == "MH") {
             if (isGravelBelowThreshold) {
                 groupName = "SM-Silty sand"; // ID=31
             } else {
                 groupName = "SM-Silty sand with gravel"; // ID=32
             }
         }
-        // TODO 2
-        // else if (fines = CL or CH)
-        {
+        else if (data.atterbergLimitsSymbol == "CL" || data.atterbergLimitsSymbol == "CH") {
             if (isGravelBelowThreshold) {
                 groupName = "SC-Clayey sand"; // ID=33
             } else {
                 groupName = "SC-Clayey sand with gravel"; // ID=34
             }
         }
-        // TODO 3
-        // else if (fines = CL-ML)
-        {
+        else if (data.atterbergLimitsSymbol == "CL-ML") {
             if (isGravelBelowThreshold) {
                 groupName = "SC-SM-Silty, clayey sand"; // ID=35
             } else {
