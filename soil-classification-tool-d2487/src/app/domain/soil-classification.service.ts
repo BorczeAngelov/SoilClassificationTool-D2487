@@ -4,8 +4,8 @@ import { classifyCoarseGrainedSoilWithDominantMaterialGravel } from './flowchart
 import { classifyCoarseGrainedSoilWithDominantMaterialSand } from './flowchart-functions/classifyCoarseGrainedSoilWithDominantMaterialSand';
 import { classifyFineGrainedSoilWithLiquidLimitBelowHalf } from './flowchart-functions/classifyFineGrainedSoilWithLiquidLimitBelowHalf';
 import { classifyFineGrainedSoilWithLiquidLimitAboveHalf } from './flowchart-functions/classifyFineGrainedSoilWithLiquidLimitAboveHalf';
-import { CsvUtilService } from './csv-util.service';
-import { VerificationByGeotechnicalEngineerData } from './VerificationByGeotechnicalEngineerData';
+import { VerificationByGeotechnicalEngineerData } from '../verification-by-engineer-form/VerificationByGeotechnicalEngineerData';
+import { CsvUtilService } from '../verification-by-engineer-form/csv-util.service';
 
 export const GRAIN_SIZE_THRESHOLD_50 = 50; // Percentage of soil passing 0.075 mm sieve
 export const LIQUID_LIMIT_THRESHOLD_50 = 50; // Liquid limit for high plasticity soil

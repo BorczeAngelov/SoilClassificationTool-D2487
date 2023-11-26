@@ -12,6 +12,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -27,7 +28,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatGridListModule,
     ReactiveFormsModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule
   ],
   exports: [
     MatSlideToggleModule,
@@ -40,7 +42,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatGridListModule,
     ReactiveFormsModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule
   ]
 })
 export class SharedModule { }

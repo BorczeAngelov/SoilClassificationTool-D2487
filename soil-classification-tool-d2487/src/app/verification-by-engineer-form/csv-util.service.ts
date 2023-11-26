@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { SoilData } from './SoilData';
-import { VerificationByGeotechnicalEngineerData } from './VerificationByGeotechnicalEngineerData';
+import { VerificationByGeotechnicalEngineerData } from '../verification-by-engineer-form/VerificationByGeotechnicalEngineerData';
+import { SoilData } from '../domain/SoilData';
 
 @Injectable({
   providedIn: 'root'

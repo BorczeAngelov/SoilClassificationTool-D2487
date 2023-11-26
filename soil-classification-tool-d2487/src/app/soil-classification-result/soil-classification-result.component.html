@@ -1,8 +1,19 @@
-<mat-card>
+<mat-card>  
+  <mat-card-header>
+    <mat-card-title>Generated Classification Results*</mat-card-title>
+  </mat-card-header>
   <mat-card-content>
 
-    <div style="color: red; font-weight: bold;">
-      Disclaimer: You are currently accessing a prototype version of the classification tool. Comprehensive validation
+    <mat-form-field style="width: 100%;">
+      <!-- “Full Group Name (Format: <GROUP_SYMBOL>-<GROUP_NAME>-<SECONDARY_MATERIAL>)” -->
+      <mat-label>Full Group Name (Format: &lt;GROUP_SYMBOL&gt;-&lt;GROUP_NAME&gt;-&lt;SECONDARY_MATERIAL&gt;)</mat-label>
+
+      <input matInput [value]="soilClassificationService.rawOutputData" readonly>
+      <mat-icon matSuffix>label</mat-icon>
+    </mat-form-field>
+    
+    <div style="color: red; font-size: smaller;">
+      *Disclaimer: You are currently accessing a prototype version of the classification tool. Comprehensive verification
       and testing procedures, encompassing a wide range of soil samples and scenarios, are yet to be completed. A
       certified geotechnical engineer is in the process of verifying the tool's functionality using real-world soil
       samples.
@@ -12,47 +23,5 @@
 
       Please be aware that the utilization of this tool is at the user's sole discretion and risk.
     </div>
-
-    <mat-form-field style="width: 100%;">
-      <mat-label>Classification Result</mat-label>
-      <input matInput [value]="soilClassificationService.rawOutputData" readonly>
-      <mat-icon matSuffix>label</mat-icon>
-    </mat-form-field>
-
-    <!-- <button mat-stroked-button type="submit" color="primary" (click)="DownloadCsvFile()">Download Classification Result (CSV)</button> -->
-
-    <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Debug Info:
-          </mat-panel-title>
-          <mat-panel-description>
-            Raw Input Data
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <pre>{{ soilClassificationService.rawInputData | json }}</pre>
-      </mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Prototype TODOs
-          </mat-panel-title>
-          <mat-panel-description>
-            Source Code: https://github.com/BorczeAngelov/SoilClassificationTool-D2487/
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <pre>1. Display a form for the geotechnical engineer to verify the results and submit them.</pre>
-        <pre>2. Remove the “Disclaimer” when there are sufficient verifications by the geotechnical engineer using real soil samples.</pre>
-        <pre>3. Improve the user-input validation. For example, disable the input diameter fields if the coefficient values are given.</pre>
-      </mat-expansion-panel>
-    </mat-accordion>
-
   </mat-card-content>
 </mat-card>
-
-Debug Info - 2:
-<div>
-  {{ soilClassificationService.rawCsvData | json }}
-</div>

@@ -1,0 +1,63 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Cross-Check Verification Form</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form class="example-container" [formGroup]="verificationForm" (submit)="onSubmit()">
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Geotechnical Engineer Full Name</mat-label>
+                    <input matInput type="text" formControlName="geotechnicalEngineer">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Company</mat-label>
+                    <input matInput type="text" formControlName="geotechnicalEngineerCompany">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Contact</mat-label>
+                    <input matInput type="email" formControlName="geotechnicalEngineerContact">
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Classification by Engineer</mat-label>
+                    <input matInput type="text" formControlName="classificationByEngineer">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Classification by Software</mat-label>
+                    <input matInput type="text" [value]="soilClassificationService.rawOutputData" readonly>
+                </mat-form-field>
+
+                <mat-checkbox
+                    [checked]="verificationForm.get('classificationByEngineer')?.value === soilClassificationService.rawOutputData"
+                    disabled>
+                    {{ verificationForm.get('classificationByEngineer')?.value ===
+                    soilClassificationService.rawOutputData
+                    ? 'Cross-check verification successful: Classifications are identical.'
+                    : 'Cross-check verification failed: Classifications are not congruent.'
+                    }}
+                </mat-checkbox>
+            </div>
+
+            <div style="display: flex; justify-content: flex-start;">
+                <button mat-raised-button color="accent" type="submit">Submit</button>
+            </div>
+        </form>
+
+        <div>
+            VerificationForm data parsed as Comma-separated values (CSV):
+            <div>{{ soilClassificationService.rawCsvData | json }}</div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+
+<!-- Prototype TODOs:
+1. Display a form for the geotechnical engineer to verify the results and submit them.
+2. Remove the “Disclaimer” when there are sufficient verifications by the geotechnical engineer using real soil samples.
+3. Improve the user-input validation. For example, disable the input diameter fields if the coefficient values are
+given. -->

@@ -1,12 +1,14 @@
 export type VerificationByGeotechnicalEngineerData = {
     dateOfTesting: Date;    
-    geotechnicalEngineer: string;    
+    geotechnicalEngineer: string;
+    classificationBySoftware: string;
+    classificationByEngineer: string;
+    doesClassificationMatch: boolean;
+    commentByEngineer: string;    
     geotechnicalEngineerCompany: string;
     geotechnicalEngineerContact: string;
-    classificationByEngineer: string;
-    classificationBySoftware: string;
-    doesClassificationMatch: boolean;
-    commentByEngineer: string;
+
+    // same properties as SoilData
     percentageOfGravel: number;
     percentageOfSand: number;
     percentageOfSilt: number;
