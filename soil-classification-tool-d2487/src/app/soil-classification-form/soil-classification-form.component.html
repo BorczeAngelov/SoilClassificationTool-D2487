@@ -33,29 +33,6 @@
                     <mat-label>Percentage Passing Sieve No.200</mat-label>
                     <input matInput formControlName="percentagePassingSieveNo200" type="number" min="0" max="100">
                 </mat-form-field>
-                            
-                <!-- <h4>Atterberg Limits</h4> -->
-                <mat-form-field appearance="fill">
-                    <mat-label>Liquid Limit (LL)</mat-label>
-                    <input matInput formControlName="liquidLimit" type="number">
-                </mat-form-field>
-
-                <mat-form-field appearance="fill">
-                    <mat-label>Plasticity Index (PI)</mat-label>
-                    <input matInput formControlName="plasticityIndex" type="number">
-                </mat-form-field>
-
-                <mat-form-field appearance="fill">
-                    <mat-label>Atterberg Limits Symbol</mat-label>
-                    <input matInput formControlName="atterbergLimitsSymbol" type="text">
-                </mat-form-field>
-            
-                
-                <!-- <h4>Organic Content</h4> -->
-                <mat-form-field appearance="fill">
-                    <mat-label>Percentage of Organic Content</mat-label>
-                    <input matInput formControlName="percentageOfOrganicContent" type="number" min="0" max="100">
-                </mat-form-field>
             </div>
 
             <div style="display: flex; justify-content: flex-start;">
@@ -89,7 +66,32 @@
                         <input matInput formControlName="d60" type="number">
                     </mat-form-field>
                 </div>
+            </div>            
+            
+            <div>
+                <!-- <h4>Atterberg Limits</h4> -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Liquid Limit (LL)</mat-label>
+                    <input matInput formControlName="liquidLimit" type="number">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Plasticity Index (PI)</mat-label>
+                    <input matInput formControlName="plasticityIndex" type="number">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Atterberg Limits Symbol</mat-label>
+                    <input matInput formControlName="atterbergLimitsSymbol" type="text">
+                </mat-form-field>
+            
+                
+                <mat-form-field appearance="fill">
+                    <mat-label>Percentage of Organic Content</mat-label>
+                    <input matInput formControlName="percentageOfOrganicContent" type="number" min="0" max="100">
+                </mat-form-field>
             </div>
+
 
             <button mat-raised-button type="submit" color="primary">Classify</button>
         </form>

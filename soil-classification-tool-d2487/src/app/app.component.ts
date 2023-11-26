@@ -20,5 +20,5 @@ import { VerificationByEngineerFormComponent } from './verification-by-engineer-
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Soil Classification Tool - ASTM D2487 (Prototype v0.1.2-20231126)';
+  title = 'Soil Classification Tool - ASTM D2487 (Prototype v0.1.3-20231126)';
 }
