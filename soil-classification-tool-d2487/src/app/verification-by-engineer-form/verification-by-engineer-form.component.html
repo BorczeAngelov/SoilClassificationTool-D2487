@@ -16,7 +16,7 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
-                    <mat-label>Contact</mat-label>
+                    <mat-label>Contact (email)</mat-label>
                     <input matInput type="email" formControlName="geotechnicalEngineerContact">
                 </mat-form-field>
             </div>
@@ -38,7 +38,7 @@
                     {{ verificationForm.get('classificationByEngineer')?.value ===
                     soilClassificationService.rawOutputData
                     ? 'Cross-check verification successful: Classifications are identical.'
-                    : 'Cross-check verification failed: Classifications are not congruent.'
+                    : 'Cross-check verification failed: Classifications are not identical.'
                     }}
                 </mat-checkbox>
             </div>
