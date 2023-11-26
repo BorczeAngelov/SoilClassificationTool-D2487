@@ -11,11 +11,12 @@ export function classifyCoarseGrainedSoilWithDominantMaterialGravel(data: SoilDa
 
     const SAND_THRESHOLD_15 = 15;
     let isSandBelowThreshold = data.percentageOfSand < SAND_THRESHOLD_15;
+    let dataFinesPercentage = data.percentageOfSilt + data.percentageOfClay;
 
-    let groupName = "";    
+    let groupName = "";
     // set error message by default. it should be overwritten if the input is valid
     groupName = `classifyCoarseGrainedSoilWithDominantMaterialGravel invalid input: atterbergLimitsSymbol "${data.atterbergLimitsSymbol}"`;
-    if (data.percentagePassingSieveNo200 < FINES_LOWER_5) {
+    if (dataFinesPercentage < FINES_LOWER_5) {
 
         if (data.coefficientOfUniformity >= COEFFICIENT_OF_UNIFORMITY_4 &&
             data.coefficientOfCurvature >= COEFFICIENT_OF_CURVATURE_LOWER_1 &&
@@ -35,7 +36,7 @@ export function classifyCoarseGrainedSoilWithDominantMaterialGravel(data: SoilDa
             }
         }
 
-    } else if (data.percentagePassingSieveNo200 >= FINES_LOWER_5 && data.percentagePassingSieveNo200 <= FINES_UPPER_12) {
+    } else if (dataFinesPercentage >= FINES_LOWER_5 && dataFinesPercentage <= FINES_UPPER_12) {
 
         if (data.coefficientOfUniformity >= COEFFICIENT_OF_UNIFORMITY_4 &&
             data.coefficientOfCurvature >= COEFFICIENT_OF_CURVATURE_LOWER_1 &&
