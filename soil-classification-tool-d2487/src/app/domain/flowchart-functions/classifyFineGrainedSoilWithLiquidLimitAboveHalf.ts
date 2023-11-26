@@ -1,16 +1,15 @@
 import { SoilData } from "../SoilData";
+import { ORGANIC_CONTENT_HIGH_30, getExtendedFineGrainedSoilGroupName_BasedOnOrganicContent } from "./OrganicContentMethods";
 
 export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData): string {
     // Declare constants locally
-    const ORGANIC_CONTENT_30 = 30;
-
     const PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15 = 15;
     const PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30 = 30;
 
     const SECONDARY_MATERIAL_THRESHOLD_15 = 15;
 
     let groupName = "";
-    if (data.percentageOfOrganicContent < ORGANIC_CONTENT_30) {
+    if (data.percentageOfOrganicContent < ORGANIC_CONTENT_HIGH_30) {
 
         if (data.atterbergLimitsSymbol == "CH") {
 
@@ -80,7 +79,12 @@ export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData):
                 }
             }
         }
+        else {
+            return `Invalid input: atterbergLimitsSymbol "${data.atterbergLimitsSymbol}". classifyFineGrainedSoilWithLiquidLimitAboveHalf supports only "CH" or "MH".`;
 
+        }
+
+        groupName = getExtendedFineGrainedSoilGroupName_BasedOnOrganicContent(data, groupName);
     }
     else {
         groupName = "OH-Highly Organic Soil (Peat)" // ID=73
