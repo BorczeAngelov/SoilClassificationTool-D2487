@@ -16,8 +16,6 @@ export const LIQUID_LIMIT_THRESHOLD_50 = 50; // Liquid limit for high plasticity
 export class SoilClassificationService {
   public rawInputData!: SoilData;
   public rawOutputData!: string;
-  public rawCsvData!: string;  
-  public rawVerificationByGeotechnicalEngineerData!: VerificationByGeotechnicalEngineerData;
 
   constructor(private csvUtilService: CsvUtilService) { }
 
@@ -31,10 +29,7 @@ export class SoilClassificationService {
       result = this.classifyFineGrainedSoil(data);
     }
 
-    this.rawOutputData = result;
-
-    this.rawVerificationByGeotechnicalEngineerData = this.csvUtilService.convertToVerificationData(this.rawInputData, this.rawOutputData);
-    this.rawCsvData = this.csvUtilService.convertToCSV(this.rawVerificationByGeotechnicalEngineerData);
+    this.rawOutputData = result;    
     return result;
   }
 

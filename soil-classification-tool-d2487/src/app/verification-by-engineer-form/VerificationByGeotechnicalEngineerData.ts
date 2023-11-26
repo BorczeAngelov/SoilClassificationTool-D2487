@@ -1,10 +1,12 @@
 export type VerificationByGeotechnicalEngineerData = {
-    dateOfTesting: Date;    
+    [key: string]: any; //[key: string]: any; is an index signature. It tells TypeScript that a VerificationByGeotechnicalEngineerData object can have any number of properties with string keys and values of any type.
+
+    dateOfTesting: Date;
     geotechnicalEngineer: string;
     classificationBySoftware: string;
     classificationByEngineer: string;
     doesClassificationMatch: boolean;
-    commentByEngineer: string;    
+    commentByEngineer: string;
     geotechnicalEngineerCompany: string;
     geotechnicalEngineerContact: string;
 

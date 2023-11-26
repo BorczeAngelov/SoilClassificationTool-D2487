@@ -7,6 +7,7 @@ import { CsvUtilService } from './csv-util.service';
 import { VerificationByGeotechnicalEngineerData } from './VerificationByGeotechnicalEngineerData';
 import { MatDialog } from '@angular/material/dialog';
 import { SubmitDialogComponent } from './submit-dialog/submit-dialog.component';
+import { SoilData } from '../domain/SoilData';
 
 @Component({
   selector: 'app-verification-by-engineer-form',
@@ -36,22 +37,28 @@ export class VerificationByEngineerFormComponent {
     if (this.verificationForm.valid) {
       const formValue = this.verificationForm.value;
 
-      // 1. Generate new VerificationByGeotechnicalEngineerData object from the formValue, the soilClassificationService.rawInputData and the soilClassificationService.rawOutputData
-      const verificationData: VerificationByGeotechnicalEngineerData = {
-        ...formValue,
-        ...this.soilClassificationService.rawInputData,
-        classificationBySoftware: this.soilClassificationService.rawOutputData,
-        doesClassificationMatch: formValue.classificationByEngineer === this.soilClassificationService.rawOutputData,
-        dateOfTesting: new Date(), // or set this to the actual date of testing
-      };
+      const verificationData = this.convertToVerificationData(
+        formValue,
+        this.soilClassificationService.rawInputData,
+        this.soilClassificationService.rawOutputData);
 
-      // 2. Call this.csvUtilService.writeToCsv(formValue);
       var csvData = this.csvUtilService.convertToCSV(verificationData);
 
-      // 3. Display a dialog to the user, so he can copy the csv value
       this.dialog.open(SubmitDialogComponent, {
         data: { csvData: csvData }
       });
     }
+  }
+
+  convertToVerificationData(formValue: any, rawInputData: SoilData, rawOutputData: string): VerificationByGeotechnicalEngineerData {
+    let verificationData: VerificationByGeotechnicalEngineerData = {
+      dateOfTesting: new Date().toLocaleDateString('de-DE'),
+      ...formValue,
+      ...rawInputData,
+      classificationBySoftware: rawOutputData,
+      doesClassificationMatch: formValue.classificationByEngineer === rawOutputData,
+      commentByEngineer: "commentByEngineer-Work-In-Progress"
+    };
+    return verificationData;
   }
 }
