@@ -13,7 +13,9 @@ export function classifyCoarseGrainedSoilWithDominantMaterialSand(data: SoilData
     const GRAVEL_THRESHOLD_15 = 15;
     let isGravelBelowThreshold = data.percentageOfSand < GRAVEL_THRESHOLD_15;
 
-    let groupName = "";
+    let groupName = "";    
+    // set error message by default. it should be overwritten if the input is valid
+    groupName = `classifyCoarseGrainedSoilWithDominantMaterialSand invalid input: atterbergLimitsSymbol "${data.atterbergLimitsSymbol}"`;
     if (data.percentagePassingSieveNo200 < FINES_LOWER_5) {
 
         if (data.coefficientOfUniformity >= COEFFICIENT_OF_UNIFORMITY_6 &&

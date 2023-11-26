@@ -81,7 +81,6 @@ export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData):
         }
         else {
             return `Invalid input: atterbergLimitsSymbol "${data.atterbergLimitsSymbol}". classifyFineGrainedSoilWithLiquidLimitAboveHalf supports only "CH" or "MH".`;
-
         }
 
         groupName = getExtendedFineGrainedSoilGroupName_BasedOnOrganicContent(data, groupName);
