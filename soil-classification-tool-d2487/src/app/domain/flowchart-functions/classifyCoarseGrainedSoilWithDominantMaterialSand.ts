@@ -11,7 +11,7 @@ export function classifyCoarseGrainedSoilWithDominantMaterialSand(data: SoilData
 
 
     const GRAVEL_THRESHOLD_15 = 15;
-    let isGravelBelowThreshold = data.percentageOfSand < GRAVEL_THRESHOLD_15;
+    let isGravelBelowThreshold = data.percentageOfGravel < GRAVEL_THRESHOLD_15;
     let dataFinesPercentage = data.percentageOfSilt + data.percentageOfClay;
 
     let groupName = "";    
