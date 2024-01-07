@@ -4,11 +4,10 @@ import { classifyCoarseGrainedSoilWithDominantMaterialGravel } from './flowchart
 import { classifyCoarseGrainedSoilWithDominantMaterialSand } from './flowchart-functions/classifyCoarseGrainedSoilWithDominantMaterialSand';
 import { classifyFineGrainedSoilWithLiquidLimitBelowHalf } from './flowchart-functions/classifyFineGrainedSoilWithLiquidLimitBelowHalf';
 import { classifyFineGrainedSoilWithLiquidLimitAboveHalf } from './flowchart-functions/classifyFineGrainedSoilWithLiquidLimitAboveHalf';
-import { VerificationByGeotechnicalEngineerData } from '../verification-by-engineer-form/VerificationByGeotechnicalEngineerData';
-import { CsvUtilService } from '../verification-by-engineer-form/csv-util.service';
 
-export const GRAIN_SIZE_THRESHOLD_50 = 50; // Percentage of soil passing 0.075 mm sieve
+export const GRAIN_SIZE_THRESHOLD_50 = 50; // Way to determine flowchart function according to D2487-98 standard
 export const LIQUID_LIMIT_THRESHOLD_50 = 50; // Liquid limit for high plasticity soil
+const PERCENTAGE_OF_SAND_AND_GRAVEL_THRESHOLD_50 = 50; // Alternative way to determine flowchart function - recommended by engineer
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +16,16 @@ export class SoilClassificationService {
   public rawInputData!: SoilData;
   public rawOutputData!: string;
 
-  constructor(private csvUtilService: CsvUtilService) { }
+  constructor() { }
 
   classifySoilWithD2487Standard(data: SoilData): string {
     this.rawInputData = data;
 
     var result;
-    if (data.percentagePassingSieveNo200 < GRAIN_SIZE_THRESHOLD_50) {
+    // const isCoarseGrainedSoil = data.percentagePassingSieveNo200 < GRAIN_SIZE_THRESHOLD_50; // obsolete
+    const isCoarseGrainedSoil = data.percentageOfSand + data.percentageOfGravel > PERCENTAGE_OF_SAND_AND_GRAVEL_THRESHOLD_50;
+
+    if (isCoarseGrainedSoil) {
       result = this.classifyCoarseGrainedSoil(data);
     } else {
       result = this.classifyFineGrainedSoil(data);
