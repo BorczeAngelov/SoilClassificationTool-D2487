@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { SoilClassificationService } from '../domain/soil-classification.service';
 import { SoilData } from '../domain/SoilData';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-soil-classification-form',
@@ -18,7 +19,8 @@ export class SoilClassificationFormComponent {
 
   constructor(
     private fb: FormBuilder,
-    private soilClassificationService: SoilClassificationService
+    private soilClassificationService: SoilClassificationService,
+    private _snackBar: MatSnackBar
   ) {
     this.soilForm = this.fb.group({
       percentageOfGravel: [null, [Validators.required, Validators.min(0), Validators.max(100)]],
@@ -41,7 +43,6 @@ export class SoilClassificationFormComponent {
   onSubmit() {
     if (this.soilForm.valid){      
       const soilData: SoilData = this.soilForm.value;
-
       
       const areCoefficientValuesGiven = !soilData.coefficientOfCurvature || !soilData.coefficientOfUniformity;
       if (areCoefficientValuesGiven) {
@@ -50,8 +51,20 @@ export class SoilClassificationFormComponent {
           soilData.coefficientOfUniformity = this.soilClassificationService.calculateCoefficientOfUniformity(soilData.d10, soilData.d60);        
       }
       
-      this.soilClassificationService.classifySoilWithD2487Standard(soilData);    
+      this.notifyIfSieve200Exceeded(soilData)
+      this.soilClassificationService.classifySoilWithD2487Standard(soilData);
     }
   }
 
+  notifyIfSieve200Exceeded(soilData: SoilData) {    
+    let combinedPercentage = soilData.percentageOfSilt + soilData.percentageOfClay;  
+    if (combinedPercentage > soilData.percentagePassingSieveNo200) {
+      this._snackBar.open(
+        `Caution: The combined silt and clay content is ${combinedPercentage}%.\n` +
+        `This exceeds the percentage passing through Sieve No. 200 (${soilData.percentagePassingSieveNo200}%).\n` +
+        `Such a condition may affect the soil classification under ASTM D2487 standards.`,
+        "Review Data"
+      );
+    }
+  }
 }
