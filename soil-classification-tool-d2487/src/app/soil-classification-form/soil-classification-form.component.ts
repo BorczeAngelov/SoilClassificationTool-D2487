@@ -51,18 +51,18 @@ export class SoilClassificationFormComponent {
           soilData.coefficientOfUniformity = this.soilClassificationService.calculateCoefficientOfUniformity(soilData.d10, soilData.d60);        
       }
       
-      this.notifyIfSieve200Exceeded(soilData)
+      this.notifyOnSieve200Discrepancy(soilData)
       this.soilClassificationService.classifySoilWithD2487Standard(soilData);
     }
   }
 
-  notifyIfSieve200Exceeded(soilData: SoilData) {    
+  notifyOnSieve200Discrepancy(soilData: SoilData) {    
     let combinedPercentage = soilData.percentageOfSilt + soilData.percentageOfClay;  
-    if (combinedPercentage > soilData.percentagePassingSieveNo200) {
+    
+    if (soilData.percentagePassingSieveNo200 > 50 && combinedPercentage < 50) {
       this._snackBar.open(
-        `Caution: The combined silt and clay content is ${combinedPercentage}%.\n` +
-        `This exceeds the percentage passing through Sieve No. 200 (${soilData.percentagePassingSieveNo200}%).\n` +
-        `Such a condition may affect the soil classification under ASTM D2487 standards.`,
+        `Warning: Sieve No. 200 passage is ${soilData.percentagePassingSieveNo200}% and combined silt and clay content (${combinedPercentage}%) is less than 50%.\n` +
+        `This may indicate a discrepancy in soil classification as per ASTM D2487 standards.`,
         "Review Data"
       );
     }
