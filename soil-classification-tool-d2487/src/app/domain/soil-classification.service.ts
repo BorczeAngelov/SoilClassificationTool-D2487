@@ -7,7 +7,6 @@ import { classifyFineGrainedSoilWithLiquidLimitAboveHalf } from './flowchart-fun
 
 export const GRAIN_SIZE_THRESHOLD_50 = 50; // Way to determine flowchart function according to D2487-98 standard
 export const LIQUID_LIMIT_THRESHOLD_50 = 50; // Liquid limit for high plasticity soil
-const PERCENTAGE_OF_SAND_AND_GRAVEL_THRESHOLD_50 = 50; // Alternative way to determine flowchart function - recommended by engineer
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +21,7 @@ export class SoilClassificationService {
     this.rawInputData = data;
 
     var result;
-    // const isCoarseGrainedSoil = data.percentagePassingSieveNo200 < GRAIN_SIZE_THRESHOLD_50; // obsolete
-    const isCoarseGrainedSoil = data.percentageOfSand + data.percentageOfGravel > PERCENTAGE_OF_SAND_AND_GRAVEL_THRESHOLD_50;
+    const isCoarseGrainedSoil = data.percentagePassingSieveNo200 < GRAIN_SIZE_THRESHOLD_50;
 
     if (isCoarseGrainedSoil) {
       result = this.classifyCoarseGrainedSoil(data);
