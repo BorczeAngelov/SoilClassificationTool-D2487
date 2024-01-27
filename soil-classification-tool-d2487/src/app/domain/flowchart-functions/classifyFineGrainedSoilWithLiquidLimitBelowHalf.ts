@@ -14,7 +14,9 @@ export function classifyFineGrainedSoilWithLiquidLimitBelowHalf(data: SoilData):
   let groupName = "";
   if (data.percentageOfOrganicContent < ORGANIC_CONTENT_HIGH_30) {
 
-    if (data.plasticityIndex > PLASTICITY_INDEX_UPPER_7) {
+    if (
+      data.plasticityIndex > PLASTICITY_INDEX_UPPER_7 
+      && data.atterbergLimitsSymbol  == "CL") {
 
       if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
         if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
@@ -48,7 +50,9 @@ export function classifyFineGrainedSoilWithLiquidLimitBelowHalf(data: SoilData):
       }
 
     }
-    else if (data.plasticityIndex >= PLASTICITY_INDEX_LOWER_4 && data.plasticityIndex <= PLASTICITY_INDEX_UPPER_7) {
+    else if (
+      (data.plasticityIndex >= PLASTICITY_INDEX_LOWER_4 && data.plasticityIndex <= PLASTICITY_INDEX_UPPER_7)
+      && data.atterbergLimitsSymbol  == "CL-ML") {
 
       if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
         if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
@@ -83,7 +87,10 @@ export function classifyFineGrainedSoilWithLiquidLimitBelowHalf(data: SoilData):
       }
 
     }
-    else {
+    else if (
+      data.plasticityIndex < PLASTICITY_INDEX_LOWER_4
+      || data.atterbergLimitsSymbol == "ML")
+    {
 
       if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
         if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
