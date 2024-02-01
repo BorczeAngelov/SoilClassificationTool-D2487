@@ -14,12 +14,11 @@ export function classifyFineGrainedSoilWithLiquidLimitBelowHalf(data: SoilData):
   let groupName = "";
   if (data.percentageOfOrganicContent < ORGANIC_CONTENT_HIGH_30) {
 
-    if (data.atterbergLimitsSymbol  == "CL" || data.atterbergLimitsSymbol  == "CL-ML")
-    {
+    if (data.atterbergLimitsSymbol == "CL" || data.atterbergLimitsSymbol == "CL-ML") {
       if (data.plasticityIndex > PLASTICITY_INDEX_UPPER_7) {
 
-        if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
-          if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
+        if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
+          if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
             groupName = "CL-Lean clay" // ID=37
           }
           else {
@@ -48,12 +47,12 @@ export function classifyFineGrainedSoilWithLiquidLimitBelowHalf(data: SoilData):
             }
           }
         }
-  
+
       }
       else if (data.plasticityIndex >= PLASTICITY_INDEX_LOWER_4 && data.plasticityIndex <= PLASTICITY_INDEX_UPPER_7) {
-  
-        if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
-          if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
+
+        if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
+          if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
             groupName = "CL-ML-Silty clay" // ID=44
           }
           else {
@@ -88,8 +87,7 @@ export function classifyFineGrainedSoilWithLiquidLimitBelowHalf(data: SoilData):
         classifyML();
       }
     }
-    else if (data.atterbergLimitsSymbol == "ML" || data.plasticityIndex < PLASTICITY_INDEX_LOWER_4)
-    {
+    else if (data.atterbergLimitsSymbol == "ML" || data.plasticityIndex < PLASTICITY_INDEX_LOWER_4) {
       classifyML();
     }
 
@@ -102,8 +100,8 @@ export function classifyFineGrainedSoilWithLiquidLimitBelowHalf(data: SoilData):
   return groupName;
 
   function classifyML() {
-    if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
-      if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
+    if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
+      if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
         groupName = "ML-Silt"; // ID=51
       }
       else {

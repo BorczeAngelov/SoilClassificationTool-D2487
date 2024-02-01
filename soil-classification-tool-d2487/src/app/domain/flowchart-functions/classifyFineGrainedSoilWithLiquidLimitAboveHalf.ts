@@ -13,8 +13,8 @@ export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData):
 
         if (data.atterbergLimitsSymbol == "CH") {
 
-            if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
-                if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
+            if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
+                if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
                     groupName = "CH-Fat clay" // ID=59
                 }
                 else {
@@ -47,8 +47,8 @@ export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData):
         }
         else if (data.atterbergLimitsSymbol == "MH") {
 
-            if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
-                if (data.percentagePassingSieveNo200 < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
+            if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
+                if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
                     groupName = "MH-Elastic silt" // ID=66
                 }
                 else {
