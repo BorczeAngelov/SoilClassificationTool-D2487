@@ -27,9 +27,7 @@ export enum AtterbergLimitsSymbol {
     ML = "ML", // Silt of low plasticity
     MH = "MH", // Silt of high plasticity
     CLML = "CL-ML", // Combination of clay (CL) and silt (ML)
-}
-
-export type ClassifiedSoilData = {
-    soilData: SoilData;
-    classification: string;
+    OL = "OL", // Organic clays and silts of low plasticity
+    OH = "OH", // Organic clays and silts of high plasticity
+    // PT = "PT"  // Peat and other highly organic soils
 }
