@@ -1,16 +1,7 @@
 import { SoilData } from "../SoilData";
+import { GRAVEL_THRESHOLD_15, FINES_LOWER_5, COEFFICIENT_OF_UNIFORMITY_6, COEFFICIENT_OF_CURVATURE_LOWER_1, COEFFICIENT_OF_CURVATURE_UPPER_3, FINES_UPPER_12 } from "../ThresholdValues";
 
 export function classifyCoarseGrainedSoilWithDominantMaterialSand(data: SoilData): string {
-    // Declare constants locally
-    const FINES_LOWER_5 = 5;
-    const FINES_UPPER_12 = 12;
-
-    const COEFFICIENT_OF_UNIFORMITY_6 = 6;
-    const COEFFICIENT_OF_CURVATURE_LOWER_1 = 1;
-    const COEFFICIENT_OF_CURVATURE_UPPER_3 = 3;
-
-
-    const GRAVEL_THRESHOLD_15 = 15;
     let isGravelBelowThreshold = data.percentageOfGravel < GRAVEL_THRESHOLD_15;
     let dataFinesPercentage = data.percentageOfSilt + data.percentageOfClay;
 

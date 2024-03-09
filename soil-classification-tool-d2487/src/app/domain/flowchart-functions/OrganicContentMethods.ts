@@ -1,8 +1,5 @@
 import { SoilData } from "../SoilData";
-
-export const ORGANIC_CONTENT_LOW_3 = 3;
-export const ORGANIC_CONTENT_MEDIUM_15 = 15;
-export const ORGANIC_CONTENT_HIGH_30 = 30;
+import { ORGANIC_CONTENT_HIGH_30, ORGANIC_CONTENT_LOW_3, ORGANIC_CONTENT_MEDIUM_15 } from "../ThresholdValues";
 
 export function getExtendedFineGrainedSoilGroupName_BasedOnOrganicContent(data: SoilData, groupName: string) {
     let extendedGroupName = groupName;

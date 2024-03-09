@@ -4,9 +4,7 @@ import { classifyCoarseGrainedSoilWithDominantMaterialGravel } from './flowchart
 import { classifyCoarseGrainedSoilWithDominantMaterialSand } from './flowchart-functions/classifyCoarseGrainedSoilWithDominantMaterialSand';
 import { classifyFineGrainedSoilWithLiquidLimitBelowHalf } from './flowchart-functions/classifyFineGrainedSoilWithLiquidLimitBelowHalf';
 import { classifyFineGrainedSoilWithLiquidLimitAboveHalf } from './flowchart-functions/classifyFineGrainedSoilWithLiquidLimitAboveHalf';
-
-export const GRAIN_SIZE_THRESHOLD_50 = 50; // Way to determine flowchart function according to D2487-98 standard
-export const LIQUID_LIMIT_THRESHOLD_50 = 50; // Liquid limit for high plasticity soil
+import { GRAIN_SIZE_THRESHOLD_50, LIQUID_LIMIT_THRESHOLD_50 } from './ThresholdValues';
 
 @Injectable({
   providedIn: 'root'

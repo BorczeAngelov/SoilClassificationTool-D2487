@@ -1,13 +1,8 @@
 import { SoilData } from "../SoilData";
-import { ORGANIC_CONTENT_HIGH_30, getExtendedFineGrainedSoilGroupName_BasedOnOrganicContent } from "./OrganicContentMethods";
+import { PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30, PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15, SECONDARY_MATERIAL_THRESHOLD_15, ORGANIC_CONTENT_HIGH_30 } from "../ThresholdValues";
+import { getExtendedFineGrainedSoilGroupName_BasedOnOrganicContent } from "./OrganicContentMethods";
 
 export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData): string {
-    // Declare constants locally
-    const PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15 = 15;
-    const PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30 = 30;
-
-    const SECONDARY_MATERIAL_THRESHOLD_15 = 15;
-
     let groupName = "";
     if (data.percentageOfOrganicContent < ORGANIC_CONTENT_HIGH_30) {
 
