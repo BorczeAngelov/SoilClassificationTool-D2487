@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { SoilClassificationService } from '../domain/soil-classification.service';
-import { SoilData } from '../domain/SoilData';
+import { AtterbergLimitsSymbol, SoilData } from '../domain/SoilData';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class SoilClassificationFormComponent {
   soilForm: FormGroup;
+  atterbergLimitsSymbolOptions = Object.values(AtterbergLimitsSymbol);
 
   constructor(
     private fb: FormBuilder,

@@ -16,6 +16,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatOptionModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select'
 
 @NgModule({
   declarations: [],
@@ -35,7 +37,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCheckboxModule,
     MatDialogModule,
     MatListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   exports: [
     MatSlideToggleModule,
@@ -52,7 +56,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCheckboxModule,
     MatDialogModule,
     MatListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatOptionModule,
+    MatSelectModule
   ]
 })
 export class SharedModule { }

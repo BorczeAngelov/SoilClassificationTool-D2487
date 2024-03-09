@@ -18,6 +18,18 @@ export type SoilData = {
     plasticityIndex: number; // Plasticity Index (PI)    
     percentageOfOrganicContent: number; // Percentage of Organic Content
 
-    // TODO: should be an enum with selectable possible values
-    atterbergLimitsSymbol: string; // Atterberg Limits Symbol
+    atterbergLimitsSymbol: AtterbergLimitsSymbol; // Atterberg Limits Symbol
 };
+
+export enum AtterbergLimitsSymbol {
+    CL = "CL", // Clay of low plasticity
+    CH = "CH", // Clay of high plasticity
+    ML = "ML", // Silt of low plasticity
+    MH = "MH", // Silt of high plasticity
+    CLML = "CL-ML", // Combination of clay (CL) and silt (ML)
+}
+
+export type ClassifiedSoilData = {
+    soilData: SoilData;
+    classification: string;
+}

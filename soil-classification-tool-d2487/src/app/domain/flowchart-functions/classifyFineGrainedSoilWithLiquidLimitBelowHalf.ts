@@ -1,13 +1,14 @@
-import { SoilData } from "../SoilData";
+import { AtterbergLimitsSymbol, SoilData } from "../SoilData";
 import { PLASTICITY_INDEX_UPPER_7, PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30, PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15, SECONDARY_MATERIAL_THRESHOLD_15, PLASTICITY_INDEX_LOWER_4, ORGANIC_CONTENT_HIGH_30 } from "../ThresholdValues";
 import { getExtendedFineGrainedSoilGroupName_BasedOnOrganicContent } from "./OrganicContentMethods";
 
 export function classifyFineGrainedSoilWithLiquidLimitBelowHalf(data: SoilData): string {
+  // set error message by default. it should be overwritten if the input is valid
+  let groupName = `Unclassified - invalid input`;
 
-  let groupName = "";
   if (data.percentageOfOrganicContent < ORGANIC_CONTENT_HIGH_30) {
 
-    if (data.atterbergLimitsSymbol == "CL" || data.atterbergLimitsSymbol == "CL-ML") {
+    if (data.atterbergLimitsSymbol == AtterbergLimitsSymbol.CL || data.atterbergLimitsSymbol == AtterbergLimitsSymbol.CLML) {
       if (data.plasticityIndex > PLASTICITY_INDEX_UPPER_7) {
 
         if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
@@ -80,7 +81,7 @@ export function classifyFineGrainedSoilWithLiquidLimitBelowHalf(data: SoilData):
         classifyML();
       }
     }
-    else if (data.atterbergLimitsSymbol == "ML" || data.plasticityIndex < PLASTICITY_INDEX_LOWER_4) {
+    else if (data.atterbergLimitsSymbol == AtterbergLimitsSymbol.ML || data.plasticityIndex < PLASTICITY_INDEX_LOWER_4) {
       classifyML();
     }
 
@@ -120,7 +121,7 @@ export function classifyFineGrainedSoilWithLiquidLimitBelowHalf(data: SoilData):
           groupName = "ML-Gravelly silt"; // ID=56
         }
         else {
-          groupName = "ML-Gravelly silt with sand";
+          groupName = "ML-Gravelly silt with sand";// ID=57
         }
       }
     }

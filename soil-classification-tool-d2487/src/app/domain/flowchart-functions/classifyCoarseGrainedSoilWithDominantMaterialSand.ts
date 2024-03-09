@@ -1,13 +1,12 @@
-import { SoilData } from "../SoilData";
+import { AtterbergLimitsSymbol, SoilData } from "../SoilData";
 import { GRAVEL_THRESHOLD_15, FINES_LOWER_5, COEFFICIENT_OF_UNIFORMITY_6, COEFFICIENT_OF_CURVATURE_LOWER_1, COEFFICIENT_OF_CURVATURE_UPPER_3, FINES_UPPER_12 } from "../ThresholdValues";
 
 export function classifyCoarseGrainedSoilWithDominantMaterialSand(data: SoilData): string {
     let isGravelBelowThreshold = data.percentageOfGravel < GRAVEL_THRESHOLD_15;
     let dataFinesPercentage = data.percentageOfSilt + data.percentageOfClay;
 
-    let groupName = "";    
     // set error message by default. it should be overwritten if the input is valid
-    groupName = `classifyCoarseGrainedSoilWithDominantMaterialSand invalid input: atterbergLimitsSymbol "${data.atterbergLimitsSymbol}"`;
+    let groupName = `Unclassified - invalid input`;
     if (dataFinesPercentage < FINES_LOWER_5) {
 
         if (data.coefficientOfUniformity >= COEFFICIENT_OF_UNIFORMITY_6 &&
@@ -35,14 +34,14 @@ export function classifyCoarseGrainedSoilWithDominantMaterialSand(data: SoilData
             data.coefficientOfCurvature <= COEFFICIENT_OF_CURVATURE_UPPER_3
         ) {
 
-            if (data.atterbergLimitsSymbol == "ML" || data.atterbergLimitsSymbol == "MH") {
+            if (data.atterbergLimitsSymbol == AtterbergLimitsSymbol.ML || data.atterbergLimitsSymbol == AtterbergLimitsSymbol.MH) {
                 if (isGravelBelowThreshold) {
                     groupName = "SW-SM-Well-graded sand with silt"; // ID=23
                 } else {
                     groupName = "SW-SM-Well-graded sand with silt and gravel"; // ID=24
                 }
             }
-            else if (data.atterbergLimitsSymbol == "CL" || data.atterbergLimitsSymbol == "CH" || data.atterbergLimitsSymbol == "CL-ML") {
+            else if (data.atterbergLimitsSymbol == AtterbergLimitsSymbol.CL || data.atterbergLimitsSymbol == AtterbergLimitsSymbol.CH || data.atterbergLimitsSymbol == AtterbergLimitsSymbol.CLML) {
                 if (isGravelBelowThreshold) {
                     groupName = "SW-SC-Well-graded sand with clay (or silty clay)"; // ID=25
                 } else {
@@ -52,14 +51,14 @@ export function classifyCoarseGrainedSoilWithDominantMaterialSand(data: SoilData
 
         } else {
 
-            if (data.atterbergLimitsSymbol == "ML" || data.atterbergLimitsSymbol == "MH") {
+            if (data.atterbergLimitsSymbol == AtterbergLimitsSymbol.ML || data.atterbergLimitsSymbol == AtterbergLimitsSymbol.MH) {
                 if (isGravelBelowThreshold) {
                     groupName = "SP-SM-Poorly graded sand with silt"; // ID=27
                 } else {
                     groupName = "SP-SM-Poorly graded sand with silt and gravel"; // ID=28
                 }
             }
-            else if (data.atterbergLimitsSymbol == "CL" || data.atterbergLimitsSymbol == "CH" || data.atterbergLimitsSymbol == "CL-ML") {
+            else if (data.atterbergLimitsSymbol == AtterbergLimitsSymbol.CL || data.atterbergLimitsSymbol == AtterbergLimitsSymbol.CH || data.atterbergLimitsSymbol == AtterbergLimitsSymbol.CLML) {
                 if (isGravelBelowThreshold) {
                     groupName = "SP-SC-Poorly graded sand with clay (or silty clay)"; // ID=29
                 } else {
@@ -71,21 +70,21 @@ export function classifyCoarseGrainedSoilWithDominantMaterialSand(data: SoilData
 
     } else {
 
-        if (data.atterbergLimitsSymbol == "ML" || data.atterbergLimitsSymbol == "MH") {
+        if (data.atterbergLimitsSymbol == AtterbergLimitsSymbol.ML || data.atterbergLimitsSymbol == AtterbergLimitsSymbol.MH) {
             if (isGravelBelowThreshold) {
                 groupName = "SM-Silty sand"; // ID=31
             } else {
                 groupName = "SM-Silty sand with gravel"; // ID=32
             }
         }
-        else if (data.atterbergLimitsSymbol == "CL" || data.atterbergLimitsSymbol == "CH") {
+        else if (data.atterbergLimitsSymbol == AtterbergLimitsSymbol.CL || data.atterbergLimitsSymbol == AtterbergLimitsSymbol.CH) {
             if (isGravelBelowThreshold) {
                 groupName = "SC-Clayey sand"; // ID=33
             } else {
                 groupName = "SC-Clayey sand with gravel"; // ID=34
             }
         }
-        else if (data.atterbergLimitsSymbol == "CL-ML") {
+        else if (data.atterbergLimitsSymbol == AtterbergLimitsSymbol.CLML) {
             if (isGravelBelowThreshold) {
                 groupName = "SC-SM-Silty, clayey sand"; // ID=35
             } else {

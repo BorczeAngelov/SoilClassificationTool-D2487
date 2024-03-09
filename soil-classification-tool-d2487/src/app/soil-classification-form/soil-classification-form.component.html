@@ -82,9 +82,11 @@
 
                 <mat-form-field appearance="fill">
                     <mat-label>Atterberg Limits Symbol</mat-label>
-                    <input matInput formControlName="atterbergLimitsSymbol" type="text">
+                    <mat-select formControlName="atterbergLimitsSymbol" placeholder="Select Atterberg Limits Symbol">
+                      <mat-option *ngFor="let option of atterbergLimitsSymbolOptions" [value]="option">{{ option }}</mat-option>
+                    </mat-select>
                 </mat-form-field>
-            
+
                 
                 <mat-form-field appearance="fill">
                     <mat-label>Percentage of Organic Content</mat-label>

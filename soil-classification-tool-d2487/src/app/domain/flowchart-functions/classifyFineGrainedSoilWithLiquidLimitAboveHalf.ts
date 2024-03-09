@@ -1,12 +1,14 @@
-import { SoilData } from "../SoilData";
+import { AtterbergLimitsSymbol, SoilData } from "../SoilData";
 import { PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30, PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15, SECONDARY_MATERIAL_THRESHOLD_15, ORGANIC_CONTENT_HIGH_30 } from "../ThresholdValues";
 import { getExtendedFineGrainedSoilGroupName_BasedOnOrganicContent } from "./OrganicContentMethods";
 
 export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData): string {
-    let groupName = "";
+    // set error message by default. it should be overwritten if the input is valid
+    let groupName = `Unclassified - invalid input`;
+
     if (data.percentageOfOrganicContent < ORGANIC_CONTENT_HIGH_30) {
 
-        if (data.atterbergLimitsSymbol == "CH") {
+        if (data.atterbergLimitsSymbol == AtterbergLimitsSymbol.CH) {
 
             if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
                 if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
@@ -40,7 +42,7 @@ export function classifyFineGrainedSoilWithLiquidLimitAboveHalf(data: SoilData):
             }
 
         }
-        else if (data.atterbergLimitsSymbol == "MH") {
+        else if (data.atterbergLimitsSymbol == AtterbergLimitsSymbol.MH) {
 
             if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_UPPER_30) {
                 if ((100 - data.percentagePassingSieveNo200) < PERCENTAGE_PASSING_SIEVE_NO200_LOWER_15) {
