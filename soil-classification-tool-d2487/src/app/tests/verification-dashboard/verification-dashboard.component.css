@@ -1,0 +1,9 @@
+.detail-row {
+    background-color: #f9f9f9; /* Light background for the detail row */
+  }
+  
+  .detail-cell {
+    padding: 8px 16px; /* Adequate padding for detail content */
+    border-bottom: 1px solid #e0e0e0; /* Subtle separation between detail items */
+  }
+  

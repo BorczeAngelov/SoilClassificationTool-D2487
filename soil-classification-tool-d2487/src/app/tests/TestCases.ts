@@ -3,7 +3,7 @@ import { SAND_THRESHOLD_15, FINES_LOWER_5, COEFFICIENT_OF_CURVATURE_LOWER_1, COE
 
 const x = 0.1;
 
-interface TestCase {
+export interface TestCase {
     id: number;
     expectedClassification: string;
     edgeCaseDeltaInfo: string;
@@ -13,10 +13,10 @@ interface TestCase {
 export type ClassifiedSoilData = {
     testCase: TestCase;
     classificationResults: string;
-    isSuccess: boolean;
+    hasTestedPassed: boolean | null | undefined;
 }
 
-export const normalTestCases: TestCase[] = [
+export const DEFAULT_TEST_CASES: TestCase[] = [
     //#region classifyCoarseGrainedSoilWithDominantMaterialGravel
     {
         id: 1,
