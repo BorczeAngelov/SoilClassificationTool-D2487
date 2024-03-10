@@ -1,97 +1,128 @@
-<div style="display: flex; align-items: center; justify-content: space-between;">
-    <button mat-raised-button (click)="runTestCases()" color="warn" 
-    style="min-width: 120px; margin-left: 10px; vertical-align: middle;">Run Tests</button>
-    <mat-form-field appearance="fill" style="flex: 1; margin-left: 20px; margin-right: 10px;">
-        <mat-label>Filter Test Results</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. CL-ML" #input style="width: 100%;">
-    </mat-form-field>
-</div>
+<mat-card style="margin: 2px 2px;">
+    <mat-card-title>Verification of Tool Accuracy</mat-card-title>
 
-<div style="height: 60vh; overflow-y: auto;">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="id" sticky="true">
-            <th mat-header-cell *matHeaderCellDef style="max-width: 15px;">ID</th>
-            <td mat-cell *matCellDef="let row" style="width: 15px;">{{row.testCase.id}}</td>
-        </ng-container>
+    <mat-card-subtitle>
+        The geotechnical engineering tool has been developed in accordance with the Unified Soil Classification
+        System-ASTM D2487 standards. For more information on ASTM D2487, see <a
+            href="https://en.wikipedia.org/wiki/Unified_Soil_Classification_System" target="_blank">Wikipedia</a>.
+        
+        To ensure its applicability in real-world scenarios, the accuracy of the tool is
+        verified through both automated tests and real-world sample evaluations, conducted by a certified
+        geotechnical engineer.
+    </mat-card-subtitle>
 
-        <!-- Classification Results Column -->
-        <ng-container matColumnDef="expectedClassification">
-            <th mat-header-cell *matHeaderCellDef style="min-width: 400px;">Expected Classification</th>
-            <td mat-cell *matCellDef="let row">{{row.testCase.expectedClassification}}</td>
-        </ng-container>
+    <mat-card-subtitle>    
+        Results of the real-world soil sample tests are publicly accessible on <a
+            href="https://docs.google.com/spreadsheets/d/1_v1mAbaQhiE_lk8hwjeohYvInF1x3JcYkJQ7lEn2MLo/edit#gid=0" target="_blank">Google
+            Sheets</a>.    
+    </mat-card-subtitle>
 
-        <ng-container matColumnDef="classificationResults">
-            <th mat-header-cell *matHeaderCellDef style="min-width: 400px;">Test Result</th>
-            <td mat-cell *matCellDef="let row">{{row.classificationResults}}</td>
-        </ng-container>
+    <mat-card-subtitle>
+        Additionally, the tool features predefined test cases aligned with the <a
+            href="https://github.com/BorczeAngelov/SoilClassificationTool-D2487/blob/main/misc/USCS_Viber_18112023.pdf" target="_blank">USCS-ASTM
+            D2487 Flowcharts</a>,
+        offering a structured verification process. By clicking the "Run Tests" button, the verification process
+        is initiated.
+    </mat-card-subtitle>
 
-        <!-- Soil Data Columns -->
-        <ng-container matColumnDef="percentageOfGravel">
-            <th mat-header-cell *matHeaderCellDef>Gravel (%)</th>
-            <td mat-cell *matCellDef="let row">{{row.testCase.data.percentageOfGravel}}</td>
-        </ng-container>
+    <mat-card-content>
 
-        <ng-container matColumnDef="percentageOfSand">
-            <th mat-header-cell *matHeaderCellDef>Sand (%)</th>
-            <td mat-cell *matCellDef="let row">{{row.testCase.data.percentageOfSand}}</td>
-        </ng-container>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <button mat-raised-button (click)="runTestCases()" color="warn"
+                style="min-width: 120px; margin-left: 10px; vertical-align: middle;">Run Tests</button>
+            <mat-form-field appearance="fill" style="flex: 1; margin-left: 20px; margin-right: 10px;">
+                <mat-label>Filter Test Results</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. CL-ML" #input style="width: 100%;">
+            </mat-form-field>
+        </div>
 
-        <ng-container matColumnDef="percentageOfSilt">
-            <th mat-header-cell *matHeaderCellDef>Silt (%)</th>
-            <td mat-cell *matCellDef="let row">{{row.testCase.data.percentageOfSilt}}</td>
-        </ng-container>
+        <div style="height: 55vh; overflow-y: auto;">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="id" sticky="true">
+                    <th mat-header-cell *matHeaderCellDef style="max-width: 15px;">ID</th>
+                    <td mat-cell *matCellDef="let row" style="width: 15px;">{{row.testCase.id}}</td>
+                </ng-container>
 
-        <ng-container matColumnDef="percentageOfClay">
-            <th mat-header-cell *matHeaderCellDef>Clay (%)</th>
-            <td mat-cell *matCellDef="let row">{{row.testCase.data.percentageOfClay}}</td>
-        </ng-container>
+                <!-- Classification Results Column -->
+                <ng-container matColumnDef="expectedClassification">
+                    <th mat-header-cell *matHeaderCellDef style="min-width: 400px;">Expected Classification</th>
+                    <td mat-cell *matCellDef="let row">{{row.testCase.expectedClassification}}</td>
+                </ng-container>
 
-        <ng-container matColumnDef="coefficientOfCurvature">
-            <th mat-header-cell *matHeaderCellDef>Coefficient of Curvature (Cc)</th>
-            <td mat-cell *matCellDef="let row">{{row.testCase.data.coefficientOfCurvature}}</td>
-        </ng-container>
+                <ng-container matColumnDef="classificationResults">
+                    <th mat-header-cell *matHeaderCellDef style="min-width: 400px;">Test Result</th>
+                    <td mat-cell *matCellDef="let row">{{row.classificationResults}}</td>
+                </ng-container>
 
-        <ng-container matColumnDef="coefficientOfUniformity">
-            <th mat-header-cell *matHeaderCellDef>Coefficient of Uniformity (Cu)</th>
-            <td mat-cell *matCellDef="let row">{{row.testCase.data.coefficientOfUniformity}}</td>
-        </ng-container>
+                <!-- Soil Data Columns -->
+                <ng-container matColumnDef="percentageOfGravel">
+                    <th mat-header-cell *matHeaderCellDef>Gravel (%)</th>
+                    <td mat-cell *matCellDef="let row">{{row.testCase.data.percentageOfGravel}}</td>
+                </ng-container>
 
-        <ng-container matColumnDef="percentagePassingSieveNo200">
-            <th mat-header-cell *matHeaderCellDef>Passing Sieve No.200 (%)</th>
-            <td mat-cell *matCellDef="let row">{{row.testCase.data.percentagePassingSieveNo200}}</td>
-        </ng-container>
+                <ng-container matColumnDef="percentageOfSand">
+                    <th mat-header-cell *matHeaderCellDef>Sand (%)</th>
+                    <td mat-cell *matCellDef="let row">{{row.testCase.data.percentageOfSand}}</td>
+                </ng-container>
 
-        <ng-container matColumnDef="liquidLimit">
-            <th mat-header-cell *matHeaderCellDef>Liquid Limit (LL)</th>
-            <td mat-cell *matCellDef="let row">{{row.testCase.data.liquidLimit}}</td>
-        </ng-container>
+                <ng-container matColumnDef="percentageOfSilt">
+                    <th mat-header-cell *matHeaderCellDef>Silt (%)</th>
+                    <td mat-cell *matCellDef="let row">{{row.testCase.data.percentageOfSilt}}</td>
+                </ng-container>
 
-        <ng-container matColumnDef="plasticityIndex">
-            <th mat-header-cell *matHeaderCellDef>Plasticity Index (PI)</th>
-            <td mat-cell *matCellDef="let row">{{row.testCase.data.plasticityIndex}}</td>
-        </ng-container>
+                <ng-container matColumnDef="percentageOfClay">
+                    <th mat-header-cell *matHeaderCellDef>Clay (%)</th>
+                    <td mat-cell *matCellDef="let row">{{row.testCase.data.percentageOfClay}}</td>
+                </ng-container>
 
-        <ng-container matColumnDef="percentageOfOrganicContent">
-            <th mat-header-cell *matHeaderCellDef>Organic Content (%)</th>
-            <td mat-cell *matCellDef="let row">{{row.testCase.data.percentageOfOrganicContent}}</td>
-        </ng-container>
+                <ng-container matColumnDef="coefficientOfCurvature">
+                    <th mat-header-cell *matHeaderCellDef>Coefficient of Curvature (Cc)</th>
+                    <td mat-cell *matCellDef="let row">{{row.testCase.data.coefficientOfCurvature}}</td>
+                </ng-container>
 
-        <ng-container matColumnDef="atterbergLimitsSymbol">
-            <th mat-header-cell *matHeaderCellDef>Atterberg Limits Symbol</th>
-            <td mat-cell *matCellDef="let row">{{row.testCase.data.atterbergLimitsSymbol}}</td>
-        </ng-container>
+                <ng-container matColumnDef="coefficientOfUniformity">
+                    <th mat-header-cell *matHeaderCellDef>Coefficient of Uniformity (Cu)</th>
+                    <td mat-cell *matCellDef="let row">{{row.testCase.data.coefficientOfUniformity}}</td>
+                </ng-container>
 
-        <!-- Table Row Definitions -->
-        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
-        [ngStyle]="{
+                <ng-container matColumnDef="percentagePassingSieveNo200">
+                    <th mat-header-cell *matHeaderCellDef>Passing Sieve No.200 (%)</th>
+                    <td mat-cell *matCellDef="let row">{{row.testCase.data.percentagePassingSieveNo200}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="liquidLimit">
+                    <th mat-header-cell *matHeaderCellDef>Liquid Limit (LL)</th>
+                    <td mat-cell *matCellDef="let row">{{row.testCase.data.liquidLimit}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="plasticityIndex">
+                    <th mat-header-cell *matHeaderCellDef>Plasticity Index (PI)</th>
+                    <td mat-cell *matCellDef="let row">{{row.testCase.data.plasticityIndex}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="percentageOfOrganicContent">
+                    <th mat-header-cell *matHeaderCellDef>Organic Content (%)</th>
+                    <td mat-cell *matCellDef="let row">{{row.testCase.data.percentageOfOrganicContent}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="atterbergLimitsSymbol">
+                    <th mat-header-cell *matHeaderCellDef>Atterberg Limits Symbol</th>
+                    <td mat-cell *matCellDef="let row">{{row.testCase.data.atterbergLimitsSymbol}}</td>
+                </ng-container>
+
+                <!-- Table Row Definitions -->
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngStyle]="{
             'background-color': row.hasTestedPassed === false ? '#ffcccc' : row.hasTestedPassed === true ? '#ccffcc' : 'inherit'
           }"></tr>
 
-        <!-- No Data Row -->
-        <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" [attr.colspan]="displayedColumns.length">No data matching the filter</td>
-        </tr>
-    </table>
+                <!-- No Data Row -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" [attr.colspan]="displayedColumns.length">No data matching the filter</td>
+                </tr>
+            </table>
 
-</div>
+        </div>
+
+    </mat-card-content>
+</mat-card>
