@@ -29,12 +29,8 @@
     flex: 1 1 auto;
   }
 
-  /* Target the mat-tab labels within your custom tab group */
-.custom-tab-group .mat-tab-labels .mat-tab-label:first-child {
-    margin-right: auto; /* Pushes all other tabs to the right */
-  }
-
-  .spacer-tab .mat-tab-label {
-    visibility: hidden; /* Hide the tab */
-    width: 100px; /* Or whatever space you need */
-  }
+  .active-link {
+    font-weight: bold;
+    color: #FF6B6B !important;
+  }  
+  
