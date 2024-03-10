@@ -7,6 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { SoilClassificationFormComponent } from './soil-classification-form/soil-classification-form.component';
 import { SoilClassificationResultComponent } from './soil-classification-result/soil-classification-result.component';
 import { VerificationByEngineerFormComponent } from './verification-by-engineer-form/verification-by-engineer-form.component';
+import { VerificationDashboardComponent } from './tests/verification-dashboard/verification-dashboard.component';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +16,11 @@ import { VerificationByEngineerFormComponent } from './verification-by-engineer-
     CommonModule,
     RouterOutlet,
     SharedModule,
-    SoilClassificationFormComponent, SoilClassificationResultComponent, VerificationByEngineerFormComponent],
+    SoilClassificationFormComponent, SoilClassificationResultComponent, VerificationByEngineerFormComponent, VerificationDashboardComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Soil Classification Tool - ASTM D2487 (Prototype v0.3.4 - 09.03.2024)';
+  title = 'Soil Classification Tool - ASTM D2487';
+  appVersion = "Prototype v0.3.4 - 09.03.2024"
 }

@@ -1,55 +1,69 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Cross-Check Verification Form</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <form class="example-container" [formGroup]="verificationForm" (submit)="onSubmit()">
-            <div>
-                <mat-form-field appearance="fill">
-                    <mat-label>Geotechnical Engineer Full Name</mat-label>
-                    <input matInput type="text" formControlName="geotechnicalEngineer">
-                </mat-form-field>
+<mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon>check_circle_outline</mat-icon>
+                Cross-Check Verification Form
+            </mat-panel-title>
+            <mat-panel-description>
+                Click to expand
+            </mat-panel-description>
+        </mat-expansion-panel-header>
 
-                <mat-form-field appearance="fill">
-                    <mat-label>Company</mat-label>
-                    <input matInput type="text" formControlName="geotechnicalEngineerCompany">
-                </mat-form-field>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Cross-Check Verification Form</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form class="example-container" [formGroup]="verificationForm" (submit)="onSubmit()">
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Geotechnical Engineer Full Name</mat-label>
+                            <input matInput type="text" formControlName="geotechnicalEngineer">
+                        </mat-form-field>
 
-                <mat-form-field appearance="fill">
-                    <mat-label>Contact (email)</mat-label>
-                    <input matInput type="email" formControlName="geotechnicalEngineerContact">
-                </mat-form-field>
-            </div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Company</mat-label>
+                            <input matInput type="text" formControlName="geotechnicalEngineerCompany">
+                        </mat-form-field>
 
-            <div>
-                <mat-form-field appearance="fill">
-                    <mat-label>Classification by Engineer</mat-label>
-                    <input matInput type="text" formControlName="classificationByEngineer">
-                </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Contact (email)</mat-label>
+                            <input matInput type="email" formControlName="geotechnicalEngineerContact">
+                        </mat-form-field>
+                    </div>
 
-                <mat-form-field appearance="fill">
-                    <mat-label>Classification by Software</mat-label>
-                    <input matInput type="text" [value]="soilClassificationService.rawOutputData" readonly>
-                </mat-form-field>
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Classification by Engineer</mat-label>
+                            <input matInput type="text" formControlName="classificationByEngineer">
+                        </mat-form-field>
 
-                <mat-checkbox
-                    [checked]="verificationForm.get('classificationByEngineer')?.value === soilClassificationService.rawOutputData"
-                    disabled>
-                    {{ verificationForm.get('classificationByEngineer')?.value ===
-                    soilClassificationService.rawOutputData
-                    ? 'Cross-check verification successful: Classifications are identical.'
-                    : 'Cross-check verification failed: Classifications are not identical.'
-                    }}
-                </mat-checkbox>
-            </div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Classification by Software</mat-label>
+                            <input matInput type="text" [value]="soilClassificationService.rawOutputData" readonly>
+                        </mat-form-field>
 
-            <div style="display: flex; justify-content: flex-start;">
-                <button mat-raised-button color="accent" type="submit">Submit</button>
-            </div>
-        </form>
-    </mat-card-content>
-</mat-card>
+                        <mat-checkbox
+                            [checked]="verificationForm.get('classificationByEngineer')?.value === soilClassificationService.rawOutputData"
+                            disabled>
+                            {{ verificationForm.get('classificationByEngineer')?.value ===
+                            soilClassificationService.rawOutputData
+                            ? 'Cross-check verification successful: Classifications are identical.'
+                            : 'Cross-check verification failed: Classifications are not identical.'
+                            }}
+                        </mat-checkbox>
+                    </div>
 
+                    <div style="display: flex; justify-content: flex-start;">
+                        <button mat-raised-button color="accent" type="submit">Submit</button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+
+    </mat-expansion-panel>
+</mat-accordion>
 
 <!-- Prototype TODOs:
 1. Display a form for the geotechnical engineer to verify the results and submit them.

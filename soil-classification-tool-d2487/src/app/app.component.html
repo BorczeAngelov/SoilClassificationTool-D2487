@@ -1,13 +1,66 @@
-<main class="main">
+<main>
   <mat-toolbar color="primary">
     <h1>{{ title }}</h1>
   </mat-toolbar>
 
-  <div class="content">
-    <app-soil-classification-form></app-soil-classification-form>
-    <mat-divider></mat-divider>
-    <app-soil-classification-result></app-soil-classification-result>
-    <mat-divider></mat-divider>
-    <app-verification-by-engineer-form></app-verification-by-engineer-form>
-  </div>
+  <mat-tab-group mat-stretch-tabs class="example-full-width" color="accent" backgroundColor="primary"
+  style="padding-bottom: 20px;">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>apps</mat-icon>
+        App
+      </ng-template>
+      <ng-template matTabContent>
+        <app-soil-classification-form></app-soil-classification-form>
+        <mat-divider></mat-divider>
+        <app-soil-classification-result></app-soil-classification-result>
+
+        <mat-divider></mat-divider>
+        <app-verification-by-engineer-form></app-verification-by-engineer-form>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab class="spacer-tab" disabled>
+      <ng-template mat-tab-label>
+      </ng-template>
+    </mat-tab>
+    <mat-tab class="spacer-tab" disabled>
+      <ng-template mat-tab-label>
+      </ng-template>
+    </mat-tab>
+    <mat-tab class="spacer-tab" disabled>
+      <ng-template mat-tab-label>
+      </ng-template>
+    </mat-tab>
+    <mat-tab class="spacer-tab" disabled>
+      <ng-template mat-tab-label>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>assignment_turned_in</mat-icon>
+        App Accuracy Verification
+      </ng-template>
+      <ng-template matTabContent>
+        <app-verification-dashboard>          
+        </app-verification-dashboard>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>info</mat-icon> About
+      </ng-template>
+      <ng-template matTabContent>
+        <div>Contact information and other details about the application.</div>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
+  <footer class="footer">
+    <div class="footer-section" id="creator">Made by Borcze Angelov.</div>    
+    <div class="footer-section" id="copyright">© Copyright 2024. All Rights Reserved.</div>
+    <div class="footer-section" id="version" style="padding-right: 10px;">Version: {{appVersion}}</div>
+  </footer>
 </main>

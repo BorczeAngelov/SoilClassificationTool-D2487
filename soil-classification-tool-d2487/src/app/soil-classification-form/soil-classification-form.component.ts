@@ -6,7 +6,6 @@ import { SharedModule } from '../shared/shared.module';
 import { SoilClassificationService } from '../domain/soil-classification.service';
 import { AtterbergLimitsSymbol, SoilData } from '../domain/SoilData';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ClassifiedSoilData, normalTestCases } from '../tests/TestCases';
 
 @Component({
   selector: 'app-soil-classification-form',
@@ -40,22 +39,6 @@ export class SoilClassificationFormComponent {
       atterbergLimitsSymbol: [null, Validators.required],
       percentageOfOrganicContent: [null, [Validators.required, Validators.min(0), Validators.max(100)]]
     });
-  }
-
-  runTestCases(){
-    normalTestCases.forEach(testCase => {
-      const classificationResults = this.soilClassificationService.classifySoilWithD2487Standard(testCase.data);      
-
-      // Construct a ClassifiedSoilData object for structured logging
-      const classifiedSoilData: ClassifiedSoilData = {
-        testCase,
-        classificationResults,
-        isSuccess: classificationResults === testCase.expectedClassification
-      };
-          
-      console.log(classifiedSoilData);
-      console.log(`Test Case ID: ${classifiedSoilData.testCase.id} ${classifiedSoilData.isSuccess ? "PASSED" : "FAILED"} , Expected: ${classifiedSoilData.testCase.expectedClassification}, Result: ${classifiedSoilData.classificationResults}`);
-    });    
   }
 
   onSubmit() {

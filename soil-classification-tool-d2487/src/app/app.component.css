@@ -1,0 +1,40 @@
+.footer { 
+  display: flex;
+  justify-content: space-between; /* Ensures children are spaced out across the entire width */
+  align-items: center; /* Vertically aligns the children */
+  width: 100%;
+  padding: 0px 5px; /* Adjusted padding for better spacing */
+  border-top: 1px solid #000; /* Assuming you want a black border; adjust as needed */
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  background-color: #FAFAFA;
+}
+
+.footer-section {
+  flex: 1;
+  text-align: center;
+}
+
+#creator {
+  text-align: left;
+}
+
+#version {
+  text-align: right;
+}
+
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  /* Target the mat-tab labels within your custom tab group */
+.custom-tab-group .mat-tab-labels .mat-tab-label:first-child {
+    margin-right: auto; /* Pushes all other tabs to the right */
+  }
+
+  .spacer-tab .mat-tab-label {
+    visibility: hidden; /* Hide the tab */
+    width: 100px; /* Or whatever space you need */
+  }
