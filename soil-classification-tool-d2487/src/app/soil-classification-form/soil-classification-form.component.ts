@@ -1,4 +1,3 @@
-// In your component class file
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,6 +5,8 @@ import { SharedModule } from '../shared/shared.module';
 import { SoilClassificationService } from '../domain/soil-classification.service';
 import { AtterbergLimitsSymbol, SoilData } from '../domain/SoilData';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+declare let gtag: Function;
 
 @Component({
   selector: 'app-soil-classification-form',
@@ -42,7 +43,15 @@ export class SoilClassificationFormComponent {
   }
 
   onSubmit() {
-    if (this.soilForm.valid){      
+    if (this.soilForm.valid) {
+
+      // Send event to Google Analytics
+      gtag('event', 'soil-classification-form_classify_click', {
+        'event_category': 'Button Click',
+        'event_label': 'Classify Soil',
+        'value': 1
+      });
+      
       const soilData: SoilData = this.soilForm.value;
       
       const areCoefficientValuesGiven = !soilData.coefficientOfCurvature || !soilData.coefficientOfUniformity;
